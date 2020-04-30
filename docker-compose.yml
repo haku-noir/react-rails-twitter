@@ -9,3 +9,23 @@ services:
       - "./:/project"
     command: "bash"
     tty: true
+  api:
+    build: "./api"
+    container_name: "twitter_api"
+    ports:
+      - "127.0.0.1:80:80"
+    volumes:
+      - "./:/project"
+    command: "rails server -b '0.0.0.0' -p 80"
+    tty: true
+    links:
+      - db
+    environment:
+      - DATABASE_HOST=db
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=password"
+      - "MYSQL_DATABASE=root"
