@@ -10,7 +10,7 @@ const initialState: TweetsState = {
 };
 
 export const tweetsReducer = reducerWithInitialState(initialState)
-  .case(tweetsActions.sampleAction, (state: TweetsState, payload: any): TweetsState => ({
+  .case(tweetsActions.updateTweets, (state: TweetsState, payload: TweetsState["tweets"]): TweetsState => ({
     ...state,
     tweets: payload,
   }));
