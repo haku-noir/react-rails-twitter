@@ -8,6 +8,6 @@ type IProps = TweetListStateAsProps & TweetListDispatchAsProps;
 
 export const TweetList: React.FC<IProps> = (props: IProps) => {
   return (
-    <div></div>
+    <div>TweetList</div>
   );
 };
