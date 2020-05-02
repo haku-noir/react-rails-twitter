@@ -2,7 +2,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { tweetsActions } from 'actions/tweetsActions';
 
 export type TweetState = {
-  id: Number;
+  id: number;
   content: string;
 };
 
