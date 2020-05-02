@@ -36,12 +36,12 @@ export const TweetList: React.FC<IProps> = (props: IProps) => {
     <List className={classes.root}>
       {tweets.map(tweet => (
         <div>
-          <ListItem alignItems="flex-start">
+          <ListItem key={tweet.id} alignItems="flex-start">
             <ListItemAvatar>
               <Avatar alt="Anonymous" src="" />
             </ListItemAvatar>
             <ListItemText
-              primary={tweet}
+              primary={tweet.content}
               secondary={
                 <React.Fragment>
                   <Typography
