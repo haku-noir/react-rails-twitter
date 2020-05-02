@@ -7,7 +7,7 @@ services:
       - "127.0.0.1:3000:3000"
     volumes:
       - "./:/project"
-    command: "bash"
+    command: "bash -c 'cd /project/app && npm start'"
     tty: true
   api:
     build: "./api"
