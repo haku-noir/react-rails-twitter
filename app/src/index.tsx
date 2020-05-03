@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { History, createBrowserHistory } from 'history';
 import { createStore } from 'store';
 import { Switch, Route } from 'react-router';
-import { connectedTweetList } from 'containers/TweetList';
+import { TweetList } from 'containers/TweetList';
 
 const history :History = createBrowserHistory();
 const store = createStore(history);
@@ -14,7 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route exact path={'/'} component={connectedTweetList}/>
+        <Route exact path={'/'} component={TweetList}/>
       </Switch>
     </ConnectedRouter>
   </Provider>,
