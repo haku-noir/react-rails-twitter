@@ -1,14 +1,8 @@
 import * as React from 'react';
 import { TweetsState } from 'reducers/tweetsReducer';
+import { Tweet } from 'components/Tweet';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-
 export type TweetListStateAsProps = TweetsState;
 
 export type TweetListDispatchAsProps = {};
@@ -35,29 +29,7 @@ export const TweetList: React.FC<IProps> = (props: IProps) => {
   return (
     <List className={classes.root}>
       {tweets.map(tweet => (
-        <div>
-          <ListItem key={tweet.id} alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar alt="Anonymous" src="" />
-            </ListItemAvatar>
-            <ListItemText
-              primary={tweet.content}
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  >
-                    Anonymous
-                  </Typography>
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-          <Divider variant="inset" component="li" />
-        </div>
+        <Tweet tweet={tweet} classes={classes} key={tweet.id} />
       ))}
     </List>
   );
