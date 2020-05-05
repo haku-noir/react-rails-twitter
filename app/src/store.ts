@@ -4,7 +4,9 @@ import {
 import { connectRouter, routerMiddleware, RouterState } from 'connected-react-router';
 import { History } from 'history';
 import logger from 'redux-logger';
+import thunkMiddleware, { ThunkMiddleware } from 'redux-thunk';
 import { TweetsState, tweetsReducer } from 'reducers/tweetsReducer';
+import { AnyAction } from 'typescript-fsa';
 
 export type RootState = {
   router: RouterState,
@@ -17,12 +19,15 @@ export const createStore = (history: History) => {
     tweets: tweetsReducer
   });
 
+  const thunk: ThunkMiddleware<RootState, AnyAction> = thunkMiddleware;
+
   return reduxCreateStore(
     rootReducer,
     compose(
       applyMiddleware(
         routerMiddleware(history),
         logger,
+        thunk
       ),
     ),
   );
