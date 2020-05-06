@@ -5,7 +5,9 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 export type TweetListStateAsProps = TweetsState;
 
-export type TweetListDispatchAsProps = {};
+export type TweetListDispatchAsProps = {
+  repeat: () => void
+};
 
 type IProps = TweetListStateAsProps & TweetListDispatchAsProps;
 
@@ -23,8 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const TweetList: React.FC<IProps> = (props: IProps) => {
-  const { tweets } = props;
+  const { tweets, repeat } = props;
   const classes = useStyles();
+  setTimeout(() => repeat(), 5000);
 
   return (
     <List className={classes.root}>
