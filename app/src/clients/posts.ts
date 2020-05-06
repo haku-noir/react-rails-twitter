@@ -1,16 +1,10 @@
-import Axios, { AxiosInstance, AxiosResponse, CancelToken } from 'axios';
-import { TweetsState } from 'reducers/tweetsReducer';
+const baseURL = 'http://localhost';
 
-const baseURL = 'localhost';
-
-const instance: AxiosInstance = Axios.create({
-  baseURL,
-  timeout: 1000,
+export const fetchPosts = () => fetch(`${baseURL}/posts`, {
+  mode: 'cors',
+  credentials: 'include',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
 });
-
-export const fetchPosts = (
-  params = {},
-  cancelToken: CancelToken = null,
-): Promise<AxiosResponse<{tweets: TweetsState}>> => (
-  instance.get('/posts', { params, cancelToken })
-);
