@@ -22,3 +22,13 @@ export const sendPost = (params: TweetState) => fetch(`${baseURL}/posts`, {
   },
   body: JSON.stringify(params)
 });
+
+export const getPost = (id: number) => fetch(`${baseURL}/posts/${id}`, {
+  method: "GET",
+  mode: 'cors',
+  credentials: 'include',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
