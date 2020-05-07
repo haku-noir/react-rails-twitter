@@ -1,10 +1,24 @@
+import { TweetState } from "reducers/tweetsReducer";
+
 const baseURL = 'http://localhost';
 
 export const fetchPosts = () => fetch(`${baseURL}/posts`, {
+  method: "GET",
   mode: 'cors',
   credentials: 'include',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
+});
+
+export const sendPost = (params: TweetState) => fetch(`${baseURL}/posts`, {
+  method: "POST",
+  mode: 'cors',
+  credentials: 'include',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(params)
 });
