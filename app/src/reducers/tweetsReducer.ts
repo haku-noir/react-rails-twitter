@@ -23,7 +23,11 @@ export const tweetsReducer = reducerWithInitialState(initialState)
     ...state,
     tweets: payload,
   }))
-  .case(tweetsActions.fetchTweets.async.done, (state: TweetsState, payload: Success<void, TweetsState["tweets"]>): TweetsState => ({
+  .case(tweetsActions.fetchTweets.async.done, (state: TweetsState, payload): TweetsState => ({
+    ...state,
+    tweets: payload.result
+  }))
+  .case(tweetsActions.addTweet.async.done, (state: TweetsState, payload): TweetsState => ({
     ...state,
     tweets: payload.result
   }));
