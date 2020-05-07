@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { TweetsState } from 'reducers/tweetsReducer';
+import { TweetsState, TweetState } from 'reducers/tweetsReducer';
 import { Tweet } from 'components/Tweet';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import { TweetForm } from 'containers/TweetForm';
 export type TweetListStateAsProps = TweetsState;
 
 export type TweetListDispatchAsProps = {
@@ -30,10 +31,13 @@ export const TweetList: React.FC<IProps> = (props: IProps) => {
   setTimeout(() => repeat(), 5000);
 
   return (
-    <List className={classes.root}>
-      {tweets.map(tweet => (
-        <Tweet tweet={tweet} classes={classes} key={tweet.id} />
-      ))}
-    </List>
+    <div>
+      <TweetForm />
+      <List className={classes.root}>
+        {tweets.map(tweet => (
+          <Tweet tweet={tweet} classes={classes} key={tweet.id} />
+        ))}
+      </List>
+    </div>
   );
 };
