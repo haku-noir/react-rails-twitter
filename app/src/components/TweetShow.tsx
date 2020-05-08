@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TweetsState } from 'reducers/tweetsReducer';
+import { TweetState } from 'reducers/tweetsReducer';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -8,7 +8,9 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 
-export type TweetShowStateAsProps = TweetsState;
+export type TweetShowStateAsProps = {
+  tweet: TweetState
+};
 
 export type TweetShowDispatchAsProps = {};
 
@@ -26,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const TweetShow: React.FC<IProps> = (props: IProps) => {
+  const { tweet } = props;
   const classes = useStyles();
 
   return (
@@ -39,7 +42,7 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
       />
       <CardContent>
         <Typography variant="body1" component="p">
-          Tweet
+          {tweet.content}
         </Typography>
       </CardContent>
     </Card>
