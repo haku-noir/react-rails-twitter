@@ -3,7 +3,9 @@ import { TweetsState, TweetState } from 'reducers/tweetsReducer';
 import { Tweet } from 'components/Tweet';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import { TweetForm } from 'containers/TweetForm';
+
 export type TweetListStateAsProps = TweetsState;
 
 export type TweetListDispatchAsProps = {
@@ -35,7 +37,9 @@ export const TweetList: React.FC<IProps> = (props: IProps) => {
       <TweetForm />
       <List className={classes.root}>
         {tweets.map(tweet => (
-          <Tweet tweet={tweet} classes={classes} key={tweet.id} />
+          <ListItem key={tweet.id} alignItems="flex-start">
+            <Tweet tweet={tweet} />
+          </ListItem>
         ))}
       </List>
     </div>
