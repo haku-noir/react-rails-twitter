@@ -5,7 +5,7 @@ import { TweetShow as TweetShowComp, TweetShowStateAsProps, TweetShowDispatchAsP
 import { RouteComponentProps } from 'react-router-dom';
 
 const mapStateToProps = (rootState: RootState, ownProps: RouteComponentProps<{id: string}>): TweetShowStateAsProps => ({
-  tweet: rootState.tweets.tweets[parseInt(ownProps.match.params.id)]
+  tweet: rootState.tweets.tweets[parseInt(ownProps.match.params.id) - 1]
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): TweetShowDispatchAsProps => ({
