@@ -7,7 +7,7 @@ export type TweetState = {
 };
 
 export type TweetsState = {
-  tweets: Array<TweetState>;
+  tweets: TweetState[];
 };
 
 const initialState: TweetsState = {
@@ -30,3 +30,7 @@ export const tweetsReducer = reducerWithInitialState(initialState)
     ...state,
     tweets: payload.result
   }));
+
+export const findTweetById = (tweets: TweetState[], id: number): TweetState => (
+  tweets.find(tweet => tweet.id == id)
+);
