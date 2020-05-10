@@ -5,10 +5,13 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { TweetState } from 'reducers/tweetsReducer';
 
 export type TweetFormDialogStateAsProps = {};
 
-export type TweetFormDialogDispatchAsProps = {};
+export type TweetFormDialogDispatchAsProps = {
+  send: (tweet: TweetState) => void
+};
 
 export type TweetFormDialogOwnProps = {
   open: boolean;
@@ -18,7 +21,8 @@ export type TweetFormDialogOwnProps = {
 type IProps = TweetFormDialogStateAsProps & TweetFormDialogDispatchAsProps & TweetFormDialogOwnProps;
 
 export const TweetFormDialog: React.FC<IProps> = (props: IProps) => {
-  const {open, setOpen} = props;
+  const {open, setOpen, send} = props;
+  const [text, updateText] = React.useState('');
 
   const handleClose = () => {
     setOpen(false);
@@ -33,13 +37,14 @@ export const TweetFormDialog: React.FC<IProps> = (props: IProps) => {
           margin="dense"
           label="Tweet"
           fullWidth
+          onChange={(event) => { updateText(String(event.target.value)); }}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={() => {send({id: 0, content: text}); handleClose();}} color="primary">
           Send
         </Button>
       </DialogActions>
