@@ -6,6 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { TweetForm } from 'containers/TweetForm';
 import { Link } from 'react-router-dom';
+import { TweetSendButton } from './TweetSendButton';
 
 export type TweetListStateAsProps = TweetsState;
 
@@ -36,7 +37,7 @@ export const TweetList: React.FC<IProps> = (props: IProps) => {
 
   return (
     <div>
-      <TweetForm />
+      <TweetSendButton />
       <List className={classes.root}>
         {tweets.map(tweet => (
           <ListItem key={tweet.id} alignItems="flex-start" onClick={() => {clickItem(tweet.id)}}>
