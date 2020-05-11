@@ -36,15 +36,15 @@ export const TweetList: React.FC<IProps> = (props: IProps) => {
   setTimeout(() => repeat(), 5000);
 
   return (
-    <div>
-      <TweetSendButton />
-      <List className={classes.root}>
+    <div className={classes.root}>
+      <List>
         {tweets.map(tweet => (
           <ListItem key={tweet.id} alignItems="flex-start" onClick={() => {clickItem(tweet.id)}}>
             <Tweet tweet={tweet} />
           </ListItem>
         ))}
       </List>
+      <TweetSendButton />
     </div>
   );
 };
