@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: [:show, :destroy]
 
   def index
     posts = Post.order(created_at: :desc)
@@ -22,4 +22,10 @@ class PostsController < ApplicationController
   def show
     render json: { data: @post }
   end
+
+  def destroy
+    @post.destroy
+    render json: { data: @post }
+  end
+
 end
