@@ -32,3 +32,13 @@ export const getPost = (id: number) => fetch(`${baseURL}/posts/${id}`, {
     'Content-Type': 'application/json'
   }
 });
+
+export const deletePost = (id: number) => fetch(`${baseURL}/posts/${id}`, {
+  method: "DELETE",
+  mode: 'cors',
+  credentials: 'include',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
