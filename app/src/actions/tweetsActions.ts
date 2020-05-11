@@ -1,7 +1,7 @@
 import actionCreatorFactory from 'typescript-fsa';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { TweetsState, TweetState } from 'reducers/tweetsReducer';
-import { fetchPosts, sendPost } from 'clients/posts';
+import { fetchPosts, sendPost, deletePost } from 'clients/posts';
 
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<TweetsState>(actionCreator);
@@ -22,6 +22,17 @@ export const tweetsActions = {
     'ADD_TWEET',
     (tweet: TweetState) => new Promise(resolve => {
       sendPost(tweet)
+        .then(() => fetchPosts())
+        .then((res) => res.json())
+        .then((res) => {
+          resolve(res.data);
+        })
+    })
+  ),
+  deleteTweet: asyncActionCreator<number, TweetsState["tweets"]>(
+    'DELETE_TWEET',
+    (id: number) => new Promise(resolve => {
+      deletePost(id)
         .then(() => fetchPosts())
         .then((res) => res.json())
         .then((res) => {

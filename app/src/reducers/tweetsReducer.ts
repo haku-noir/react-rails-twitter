@@ -29,6 +29,10 @@ export const tweetsReducer = reducerWithInitialState(initialState)
   .case(tweetsActions.addTweet.async.done, (state: TweetsState, payload): TweetsState => ({
     ...state,
     tweets: payload.result
+  }))
+  .case(tweetsActions.deleteTweet.async.done, (state: TweetsState, payload): TweetsState => ({
+    ...state,
+    tweets: payload.result
   }));
 
 export const findTweetById = (tweets: TweetState[], id: number): TweetState => (

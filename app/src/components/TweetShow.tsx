@@ -10,7 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { TweetDeleteButton } from 'containers/TweetDeleteButton';
 
 export type TweetShowStateAsProps = {
   tweet: TweetState
@@ -54,9 +54,7 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
           <IconButton aria-label="edit" color="primary">
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="delete" color="secondary">
-            <DeleteIcon />
-          </IconButton>
+          <TweetDeleteButton id={tweet.id} />
         </div>
       </CardActions>
     </Card>
