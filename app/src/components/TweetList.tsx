@@ -4,9 +4,7 @@ import { Tweet } from 'components/Tweet';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { TweetForm } from 'containers/TweetForm';
-import { Link } from 'react-router-dom';
-import { TweetSendButton } from './TweetSendButton';
+import { TweetSendButton } from 'containers/TweetSendButton';
 
 export type TweetListStateAsProps = TweetsState;
 
