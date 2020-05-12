@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const TweetList: React.FC<IProps> = (props: IProps) => {
   const { tweets, repeat, clickItem } = props;
   const classes = useStyles();
+
   setTimeout(() => repeat(), 5000);
 
   return (

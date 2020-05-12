@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const SendButton: React.FC<IProps> = (props: IProps) => {
   const { send, dialogParams } = props;
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
 
   return (
     <div>

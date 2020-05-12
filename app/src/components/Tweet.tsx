@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { TweetState } from 'reducers/tweetsReducer';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
-export type TweetProps = {
+type IProps = {
   tweet: TweetState;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: 500,
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const Tweet: React.FC<TweetProps> = (props: TweetProps) => {
+export const Tweet: React.FC<IProps> = (props: IProps) => {
   const { tweet } = props;
   const classes = useStyles();
 

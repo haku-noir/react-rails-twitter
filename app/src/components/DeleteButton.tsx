@@ -16,6 +16,7 @@ type IProps = DeleteButtonStateAsProps & DeleteButtonDispatchAsProps & DeleteBut
 
 export const DeleteButton: React.FC<IProps> = (props: IProps) => {
   const { destroy, id } = props;
+
   return (
     <IconButton aria-label="destroy" color="secondary" onClick={() => destroy(id)}>
       <DeleteIcon />

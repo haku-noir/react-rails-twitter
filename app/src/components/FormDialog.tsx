@@ -13,14 +13,14 @@ export type FormDialogParams = {
   default: string;
 };
 
-export type FormDialogProps = {
+type IProps = {
   send: (text: string) => void;
   open: boolean;
   setOpen: (value: React.SetStateAction<boolean>) => void;
   params: FormDialogParams;
 };
 
-export const FormDialog: React.FC<FormDialogProps> = (props: FormDialogProps) => {
+export const FormDialog: React.FC<IProps> = (props: IProps) => {
   const { send, open, setOpen, params } = props;
   const [text, updateText] = React.useState('');
 
