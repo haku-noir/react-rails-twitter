@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import EditIcon from '@material-ui/icons/Edit';
+import { TweetEditButton } from 'containers/TweetEditButton';
 import { TweetDeleteButton } from 'containers/TweetDeleteButton';
 
 export type TweetShowStateAsProps = {
@@ -51,9 +51,7 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
           <FavoriteIcon />
         </IconButton>
         <div style={{marginLeft: 'auto'}}>
-          <IconButton aria-label="edit" color="primary">
-            <EditIcon />
-          </IconButton>
+          <TweetEditButton tweet={tweet} />
           <TweetDeleteButton id={tweet.id} />
         </div>
       </CardActions>
