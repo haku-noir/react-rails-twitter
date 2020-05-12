@@ -6,16 +6,18 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+export type FormDialogParams = {
+  title: string;
+  label: string;
+  button: string;
+  default: string;
+};
+
 export type FormDialogProps = {
   send: (text: string) => void;
   open: boolean;
   setOpen: (value: React.SetStateAction<boolean>) => void;
-  params: {
-    title: string;
-    label: string;
-    button: string;
-    default: string;
-  }
+  params: FormDialogParams;
 };
 
 export const FormDialog: React.FC<FormDialogProps> = (props: FormDialogProps) => {
