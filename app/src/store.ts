@@ -7,16 +7,19 @@ import logger from 'redux-logger';
 import thunkMiddleware, { ThunkMiddleware } from 'redux-thunk';
 import { TweetsState, tweetsReducer } from 'reducers/tweetsReducer';
 import { AnyAction } from 'typescript-fsa';
+import { loginUserReducer, LoginUserState } from 'reducers/loginUserReducer';
 
 export type RootState = {
   router: RouterState,
-  tweets: TweetsState
+  tweets: TweetsState,
+  loginUser: LoginUserState
 };
 
 export const createStore = (history: History) => {
   const rootReducer = combineReducers<RootState>({
     router: connectRouter(history),
-    tweets: tweetsReducer
+    tweets: tweetsReducer,
+    loginUser: loginUserReducer
   });
 
   const thunk: ThunkMiddleware<RootState, AnyAction> = thunkMiddleware;
