@@ -6,6 +6,10 @@ export type UserState = {
   name: string;
 };
 
+export type PassUserState = UserState & {
+  password: string;
+};
+
 export type LoginUserState = {
   user?: UserState;
   logined: boolean;
