@@ -17,7 +17,10 @@ export type UserFormStateAsProps = {
   params: UserFormParams;
 };
 
-export type UserFormDispatchAsProps = {};
+export type UserFormDispatchAsProps = {
+  clickL: () => void;
+  clickR: (user: string, password: string) => void;
+};
 
 type IProps = UserFormStateAsProps & UserFormDispatchAsProps;
 
@@ -34,28 +37,36 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const UserForm: React.FC<IProps> = (props: IProps) => {
-  const { params } = props;
+  const { params, clickL, clickR } = props;
+  const [user, updateUser] = React.useState('');
+  const [password, updatePassword] = React.useState('');
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardHeader title={params.title} />
       <CardContent>
-        <TextField className={classes.field} label="User" variant="outlined" />
+        <TextField
+          className={classes.field}
+          label="User"
+          variant="outlined"
+          onChange={(event) => updateUser(String(event.target.value))}
+        />
         <TextField
             className={classes.field}
             label="Password"
             type="password"
             autoComplete="current-password"
             variant="outlined"
+            onChange={(event) => updatePassword(String(event.target.value))}
           />
       </CardContent>
       <CardActions disableSpacing>
-        <Button color="secondary">
+        <Button color="secondary" onClick={() => clickL()}>
           {params.buttonL}
         </Button>
         <div style={{marginLeft: 'auto'}}>
-          <Button color="primary">
+          <Button color="primary" onClick={() => clickR(user, password)}>
             {params.buttonR}
           </Button>
         </div>
