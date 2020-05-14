@@ -7,11 +7,19 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
-export type UserLoginFormStateAsProps = {};
+export type UserFormParams = {
+  title: string;
+  buttonL: string;
+  buttonR: string;
+};
 
-export type UserLoginFormDispatchAsProps = {};
+export type UserFormStateAsProps = {
+  params: UserFormParams;
+};
 
-type IProps = UserLoginFormStateAsProps & UserLoginFormDispatchAsProps;
+export type UserFormDispatchAsProps = {};
+
+type IProps = UserFormStateAsProps & UserFormDispatchAsProps;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,12 +33,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const UserLoginForm: React.FC<IProps> = (props: IProps) => {
+export const UserForm: React.FC<IProps> = (props: IProps) => {
+  const { params } = props;
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardHeader title="Login" />
+      <CardHeader title={params.title} />
       <CardContent>
         <TextField className={classes.field} label="User" variant="outlined" />
         <TextField
@@ -43,11 +52,11 @@ export const UserLoginForm: React.FC<IProps> = (props: IProps) => {
       </CardContent>
       <CardActions disableSpacing>
         <Button color="secondary">
-          Register
+          {params.buttonL}
         </Button>
         <div style={{marginLeft: 'auto'}}>
           <Button color="primary">
-            Login
+            {params.buttonR}
           </Button>
         </div>
       </CardActions>
