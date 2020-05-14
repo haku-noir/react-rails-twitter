@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(content: params[:content])
+    user = User.new(name: params[:name], password: params[:password])
     if user.save
       render json: { data: user }
     else
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(content: params[:content])
+    if @user.update(name: params[:name], password: params[:password])
       render json: { data: @user }
     else
       render json: { data: @user.errors }
