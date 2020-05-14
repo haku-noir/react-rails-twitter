@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { TweetList } from 'containers/TweetList';
 import { TweetShow } from 'containers/TweetShow';
 import { UserLoginForm } from 'containers/UserLoginForm';
+import { UserRegisterForm } from 'containers/UserRegisterForm';
 
 const history :History = createBrowserHistory();
 const store = createStore(history);
@@ -21,6 +22,7 @@ ReactDOM.render(
           <Route exact path={'/'} component={TweetList}/>
           <Route exact path={'/tweets/:id'} component={TweetShow}/>
           <Route exact path={'/users/login'} component={UserLoginForm}/>
+          <Route exact path={'/users/register'} component={UserRegisterForm}/>
         </Switch>
       </Grid>
     </ConnectedRouter>

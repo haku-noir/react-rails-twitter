@@ -7,15 +7,15 @@ import { loginUserActions } from 'actions/loginUserActions';
 
 const mapStateToProps = (rootState: RootState): UserFormStateAsProps => ({
   params: {
-    title: 'Login',
-    buttonL: 'Register',
-    buttonR: 'Login'
+    title: 'Register',
+    buttonL: 'Login',
+    buttonR: 'Register'
   }
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
-  clickL: () => dispatch(push('/users/register')),
+  clickL: () => dispatch(push('/users/login')),
   clickR: () => dispatch(loginUserActions.loginAction)
 });
 
-export const UserLoginForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
+export const UserRegisterForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
