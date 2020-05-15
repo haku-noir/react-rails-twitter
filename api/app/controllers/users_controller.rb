@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       session[:userId] = user.id
       render json: { data: user }
     else
-      render json: { error: user.errors }
+      render json: {}
     end
   end
 
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       session[:userId] = user.id
       render json: { data: user }
     else
-      render json: { error: user.errors }
+      render json: {}
     end
   end
 
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     if user.update(name: params[:name], password: params[:password])
       render json: { data: user }
     else
-      render json: { data: user.errors }
+      render json: {}
     end
   end
 

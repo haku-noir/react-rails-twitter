@@ -11,28 +11,28 @@ class PostsController < ApplicationController
     if post.save
       render json: { data: post }
     else
-      render json: { data: post.errors }
+      render json: {}
     end
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    post = Post.find(params[:id])
   end
 
   def show
-    render json: { data: @post }
+    render json: { data: post }
   end
 
   def destroy
-    @post.destroy
-    render json: { data: @post }
+    post.destroy
+    render json: { data: post }
   end
 
   def update
-    if @post.update(content: params[:content])
-      render json: { data: @post }
+    if post.update(content: params[:content])
+      render json: { data: post }
     else
-      render json: { data: @post.errors }
+      render json: {}
     end
   end
 
