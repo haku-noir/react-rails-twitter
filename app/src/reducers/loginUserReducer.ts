@@ -21,15 +21,12 @@ const initialState: LoginUserState = {
 
 export const loginUserReducer = reducerWithInitialState(initialState)
   .case(loginUserActions.login.async.done, (state: LoginUserState, payload): LoginUserState => {
-    if(payload){
-      return {
-        ...state,
-        user: payload.result,
-        logined: true
-      };
-    }else{
-      return state;
-    }
+    if(payload.result === undefined) return state;
+    return {
+      ...state,
+      user: payload.result,
+      logined: true
+    };
   })
   .case(loginUserActions.addUser.async.done, (state: LoginUserState, payload): LoginUserState => ({
     ...state,
