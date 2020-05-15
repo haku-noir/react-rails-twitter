@@ -20,11 +20,17 @@ const initialState: LoginUserState = {
 };
 
 export const loginUserReducer = reducerWithInitialState(initialState)
-  .case(loginUserActions.loginAction, (state: LoginUserState, payload: UserState): LoginUserState => ({
-    ...state,
-    user: payload,
-    logined: true
-  }))
+  .case(loginUserActions.login.async.done, (state: LoginUserState, payload): LoginUserState => {
+    if(payload){
+      return {
+        ...state,
+        user: payload.result,
+        logined: true
+      };
+    }else{
+      return state;
+    }
+  })
   .case(loginUserActions.addUser.async.done, (state: LoginUserState, payload): LoginUserState => ({
     ...state,
     user: payload.result,
