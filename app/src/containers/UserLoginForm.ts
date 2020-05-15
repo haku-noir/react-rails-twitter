@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
       id: 0,
       name: user,
       password
+    })
+    .then((payload) => {
+      if(payload !== undefined) dispatch(push('/'));
     });
   }
 });
