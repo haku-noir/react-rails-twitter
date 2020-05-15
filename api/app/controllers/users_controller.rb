@@ -9,30 +9,42 @@ class UsersController < ApplicationController
   def create
     user = User.new(name: params[:name], password: params[:password])
     if user.save
+      session[:userId] = user.id
       render json: { data: user }
     else
-      render json: { data: user.errors }
+      render json: { error: user.errors }
+    end
+  end
+
+  def login
+    user = User.find_by(name: params[:name], password: params[:password])
+
+    if user
+      session[:userId] = user.id
+      render json: { data: user }
+    else
+      render json: { error: user.errors }
     end
   end
 
   def set_user
-    @user = User.find(params[:id])
+    user = User.find(params[:id])
   end
 
   def show
-    render json: { data: @user }
+    render json: { data: user }
   end
 
   def destroy
-    @user.destroy
-    render json: { data: @user }
+    user.destroy
+    render json: { data: user }
   end
 
   def update
-    if @user.update(name: params[:name], password: params[:password])
-      render json: { data: @user }
+    if user.update(name: params[:name], password: params[:password])
+      render json: { data: user }
     else
-      render json: { data: @user.errors }
+      render json: { data: user.errors }
     end
   end
 
