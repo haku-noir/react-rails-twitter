@@ -10,6 +10,7 @@ import { TweetList } from 'containers/TweetList';
 import { TweetShow } from 'containers/TweetShow';
 import { UserLoginForm } from 'containers/UserLoginForm';
 import { UserRegisterForm } from 'containers/UserRegisterForm';
+import { MenuAppBar } from 'containers/MenuAppBar';
 
 const history :History = createBrowserHistory();
 const store = createStore(history);
@@ -17,6 +18,7 @@ const store = createStore(history);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
+      <MenuAppBar />
       <Grid container justify="center">
         <Switch>
           <Route exact path={'/'} component={TweetList}/>
