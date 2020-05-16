@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
   post "login" => "users#login"
+  post "logout" => "users#logout"
 end
