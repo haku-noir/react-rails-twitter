@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -15,9 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
     title: {
       flexGrow: 1,
     },
@@ -27,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export type MenuAppBarStateAsProps = LoginUserState;
 
 export type MenuAppBarDispatchAsProps = {
+  clickHome: () => void;
   clickLogin: () => void;
   clickLogout: () => void;
   clickProfile: (id: number) => void;
@@ -35,7 +34,7 @@ export type MenuAppBarDispatchAsProps = {
 type IProps = MenuAppBarStateAsProps & MenuAppBarDispatchAsProps;
 
 export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
-  const { user, loggedin, clickLogin, clickLogout, clickProfile } = props;
+  const { user, loggedin, clickHome, clickLogin, clickLogout, clickProfile } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const classes = useStyles();
@@ -52,14 +51,18 @@ export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          <IconButton
+            onClick={clickHome}
+            color="inherit"
+          >
+            <HomeIcon />
+          </IconButton>
           <Typography variant="h6" className={classes.title}>
             TweetApp
           </Typography>
           {loggedin ? (
             <div>
               <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
@@ -67,7 +70,6 @@ export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
                 <AccountCircle />
               </IconButton>
               <Menu
-                id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: 'top',
@@ -91,7 +93,7 @@ export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
               </Menu>
             </div>
           ) : (
-            <Button color="inherit" onClick={() => clickLogin()}>Login</Button>
+            <Button color="inherit" onClick={clickLogin}>Login</Button>
           )}
         </Toolbar>
       </AppBar>
