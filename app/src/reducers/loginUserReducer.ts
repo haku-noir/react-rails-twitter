@@ -12,11 +12,11 @@ export type PassUserState = UserState & {
 
 export type LoginUserState = {
   user?: UserState;
-  logined: boolean;
+  loggedin: boolean;
 };
 
 const initialState: LoginUserState = {
-  logined: false
+  loggedin: false
 };
 
 export const loginUserReducer = reducerWithInitialState(initialState)
@@ -25,11 +25,11 @@ export const loginUserReducer = reducerWithInitialState(initialState)
     return {
       ...state,
       user: payload.result,
-      logined: true
+      loggedin: true
     };
   })
   .case(loginUserActions.addUser.async.done, (state: LoginUserState, payload): LoginUserState => ({
     ...state,
     user: payload.result,
-    logined: true
+    loggedin: true
   }));
