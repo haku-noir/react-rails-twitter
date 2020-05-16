@@ -13,7 +13,7 @@ type IProps = {
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: 500,
+      width: '100%',
     },
   }),
 );

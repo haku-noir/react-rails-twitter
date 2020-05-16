@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { TweetsState, TweetState } from 'reducers/tweetsReducer';
+import { size } from 'size';
+import { TweetsState } from 'reducers/tweetsReducer';
 import { Tweet } from 'components/Tweet';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -18,8 +19,7 @@ type IProps = TweetListStateAsProps & TweetListDispatchAsProps;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
-      maxWidth: '36ch',
+      width: size.width,
       backgroundColor: theme.palette.background.paper,
     },
     inline: {

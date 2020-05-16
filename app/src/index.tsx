@@ -18,14 +18,18 @@ const store = createStore(history);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <MenuAppBar />
-      <Grid container justify="center">
-        <Switch>
-          <Route exact path={'/'} component={TweetList}/>
-          <Route exact path={'/tweets/:id'} component={TweetShow}/>
-          <Route exact path={'/users/login'} component={UserLoginForm}/>
-          <Route exact path={'/users/register'} component={UserRegisterForm}/>
-        </Switch>
+      <Grid container>
+        <Grid container item justify="center">
+          <MenuAppBar />
+        </Grid>
+        <Grid container item justify="center">
+          <Switch>
+            <Route exact path={'/'} component={TweetList}/>
+            <Route exact path={'/tweets/:id'} component={TweetShow}/>
+            <Route exact path={'/users/login'} component={UserLoginForm}/>
+            <Route exact path={'/users/register'} component={UserRegisterForm}/>
+          </Switch>
+        </Grid>
       </Grid>
     </ConnectedRouter>
   </Provider>,

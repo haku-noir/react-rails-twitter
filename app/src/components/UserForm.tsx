@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import { size } from 'size';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -24,10 +25,10 @@ export type UserFormDispatchAsProps = {
 
 type IProps = UserFormStateAsProps & UserFormDispatchAsProps;
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: 500,
+      width: size.width,
     },
     field: {
       width: '100%',
