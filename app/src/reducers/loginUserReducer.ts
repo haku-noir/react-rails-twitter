@@ -28,6 +28,9 @@ export const loginUserReducer = reducerWithInitialState(initialState)
       loggedin: true
     };
   })
+  .case(loginUserActions.logout.async.done, (state: LoginUserState): LoginUserState => ({
+    loggedin: false
+  }))
   .case(loginUserActions.addUser.async.done, (state: LoginUserState, payload): LoginUserState => ({
     ...state,
     user: payload.result,
