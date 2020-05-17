@@ -40,7 +40,7 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
           <Avatar alt="Anonymous" src="" />
         }
         title={tweet.user.name}
-        subheader="Date"
+        subheader={tweet.time}
       />
       <CardContent>
         <Typography variant="body1" component="p">

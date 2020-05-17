@@ -6,6 +6,7 @@ export type TweetState = {
   id: number;
   content: string;
   user?: UserState;
+  time?: string;
 };
 
 export type TweetsState = {

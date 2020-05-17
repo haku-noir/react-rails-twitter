@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @posts.each do |post|
       post_hash = post.attributes
       post_hash.store(:user, post.user)
+      post_hash.store(:time, post.time)
       @posts_array << post_hash
     end
     render json: { posts: @posts_array }
@@ -35,6 +36,7 @@ class PostsController < ApplicationController
   def set_post_hash
     @post_hash = @post.attributes
     @post_hash.store(:user, @post.user)
+    @post_hash.store(:time, @post.time)
   end
 
   def show
