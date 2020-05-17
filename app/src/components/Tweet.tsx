@@ -28,7 +28,7 @@ export const Tweet: React.FC<IProps> = (props: IProps) => {
         avatar={
           <Avatar alt="Anonymous" src="" />
         }
-        title="User"
+        title={tweet.user.name}
         subheader={
           <Typography variant="body1" component="p">
             {tweet.content}

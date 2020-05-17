@@ -1,9 +1,11 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { tweetsActions } from 'actions/tweetsActions';
+import { UserState } from './loginUserReducer';
 
 export type TweetState = {
   id: number;
   content: string;
+  user?: UserState;
 };
 
 export type TweetsState = {
@@ -11,10 +13,7 @@ export type TweetsState = {
 };
 
 const initialState: TweetsState = {
-  tweets: [
-    {id: 1, content: 'Hello'},
-    {id: 2, content: 'World'}
-  ],
+  tweets: [],
 };
 
 export const tweetsReducer = reducerWithInitialState(initialState)

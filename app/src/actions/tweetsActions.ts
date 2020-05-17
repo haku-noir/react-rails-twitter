@@ -6,49 +6,48 @@ import { fetchPosts, sendPost, deletePost, updatePost } from 'clients/posts';
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<TweetsState>(actionCreator);
 
+const createTweets = () => new Promise<TweetsState["tweets"]>(resolve => {
+  fetchPosts()
+    .then((res) => res.json())
+    .then((res) => {
+      resolve(res.posts);
+    });
+});
+
 export const tweetsActions = {
   updateTweets: actionCreator<TweetsState["tweets"]>('UPDATE_TWEETS'),
   fetchTweets: asyncActionCreator<void, TweetsState["tweets"]>(
     'FETCH_TWEETS',
-    () => new Promise(resolve => {
-      fetchPosts()
-        .then((res) => res.json())
-        .then((res) => {
-          resolve(res.data);
-        })
-    })
+    () => createTweets()
   ),
   addTweet: asyncActionCreator<TweetState, TweetsState["tweets"]>(
     'ADD_TWEET',
     (tweet: TweetState) => new Promise(resolve => {
       sendPost(tweet)
-        .then(() => fetchPosts())
-        .then((res) => res.json())
-        .then((res) => {
-          resolve(res.data);
-        })
+        .then(() => createTweets())
+        .then((tweets) => {
+          resolve(tweets);
+        });
     })
   ),
   deleteTweet: asyncActionCreator<number, TweetsState["tweets"]>(
     'DELETE_TWEET',
     (id: number) => new Promise(resolve => {
       deletePost(id)
-        .then(() => fetchPosts())
-        .then((res) => res.json())
-        .then((res) => {
-          resolve(res.data);
-        })
+        .then(() => createTweets())
+        .then((tweets) => {
+          resolve(tweets);
+        });
     })
   ),
   updateTweet: asyncActionCreator<TweetState, TweetsState["tweets"]>(
     'UPDATE_TWEET',
     (tweet: TweetState) => new Promise(resolve => {
       updatePost(tweet)
-        .then(() => fetchPosts())
-        .then((res) => res.json())
-        .then((res) => {
-          resolve(res.data);
-        })
+        .then(() => createTweets())
+        .then((tweets) => {
+          resolve(tweets);
+        });
     })
   ),
 };
