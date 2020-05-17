@@ -1,9 +1,17 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :destroy, :update]
+  before_action :set_post_hash, only: [:show, :destroy, :update]
 
   def index
     @posts = Post.order(updated_at: :desc)
-    render json: { data: @posts }
+    @posts_array = []
+
+    @posts.each do |post|
+      post_hash = post.attributes
+      post_hash.store(:user, post.user)
+      @posts_array << post_hash
+    end
+    render json: { posts: @posts_array }
   end
 
   def create
@@ -11,8 +19,10 @@ class PostsController < ApplicationController
       content: params[:content],
       user_id: @current_user.id
     )
+
     if @post.save
-      render json: { data: @post }
+      set_post_hash
+      render json: { post: @post_hash }
     else
       render json: {}
     end
@@ -22,18 +32,23 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def set_post_hash
+    @post_hash = @post.attributes
+    @post_hash.store(:user, @post.user)
+  end
+
   def show
-    render json: { data: @post }
+    render json: { post: @post_hash }
   end
 
   def destroy
     @post.destroy
-    render json: { data: @post }
+    render json: {}
   end
 
   def update
     if @post.update(content: params[:content])
-      render json: { data: @post }
+      render json: { post: @post_hash }
     else
       render json: {}
     end
