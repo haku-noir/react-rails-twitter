@@ -7,7 +7,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(content: params[:content])
+    post = Post.new(
+      content: params[:content],
+      user_id: current_user.id
+    )
     if post.save
       render json: { data: post }
     else

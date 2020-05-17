@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(name: params[:name], password: params[:password])
     if user.save
-      session[:userId] = user.id
+      session[:user_id] = user.id
       render json: { data: user }
     else
       render json: {}
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     user = User.find_by(name: params[:name], password: params[:password])
 
     if user
-      session[:userId] = user.id
+      session[:user_id] = user.id
       render json: { data: user }
     else
       render json: {}
