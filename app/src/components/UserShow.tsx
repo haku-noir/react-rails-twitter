@@ -28,12 +28,16 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
 
   const [user, serUser] = React.useState({id: 0, name: ''});
   React.useEffect(() => {
-    getUser(id)
+    let unmounted = false;
+    if(!unmounted){
+      getUser(id)
         .then((res) => res.json())
         .then((res) => {
           serUser(res.data);
-        })
-  });
+        });
+    }
+    return () => {unmounted = true};
+  }, [id]);
 
   return (
     <Card className={classes.root}>
