@@ -17,7 +17,9 @@ export type TweetShowStateAsProps = {
   tweet: TweetState
 };
 
-export type TweetShowDispatchAsProps = {};
+export type TweetShowDispatchAsProps = {
+  clickUserName: (id: number) => void;
+};
 
 type IProps = TweetShowStateAsProps & TweetShowDispatchAsProps;
 
@@ -30,7 +32,7 @@ const useStyles = makeStyles(() =>
 );
 
 export const TweetShow: React.FC<IProps> = (props: IProps) => {
-  const { tweet } = props;
+  const { tweet, clickUserName } = props;
   const classes = useStyles();
 
   return (
@@ -39,7 +41,11 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
         avatar={
           <Avatar alt="Anonymous" src="" />
         }
-        title={tweet.user.name}
+        title={
+          <Typography component="a" onClick={() => clickUserName(tweet.user.id)}>
+            {tweet.user.name}
+          </Typography>
+        }
         subheader={tweet.time}
       />
       <CardContent>
