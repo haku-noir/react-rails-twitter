@@ -10,6 +10,10 @@ export type PassUserState = UserState & {
   password: string;
 };
 
+export type ImageUserState = UserState & {
+  image: File;
+};
+
 export type LoginUserState = {
   user?: UserState;
   loggedin: boolean;

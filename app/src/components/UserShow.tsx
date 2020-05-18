@@ -3,10 +3,12 @@ import { size } from 'size';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
+import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import { getUser } from 'clients/users';
 import { UserTweetList } from 'containers/UserTweetList';
+import { UserEditButton } from 'containers/UserEditButton';
 
 export type UserShowStateAsProps = {
   id: number;
@@ -28,14 +30,14 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
   const { id } = props;
   const classes = useStyles();
 
-  const [user, serUser] = React.useState({id: 0, name: ''});
+  const [user, setUser] = React.useState({id: 0, name: ''});
   React.useEffect(() => {
     let unmounted = false;
     if(!unmounted){
       getUser(id)
         .then((res) => res.json())
         .then((res) => {
-          serUser(res.data);
+          setUser(res.data);
         });
     }
     return () => {unmounted = true};
@@ -50,6 +52,11 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
           }
           title={user.name}
         />
+        <CardActions disableSpacing>
+          <div style={{marginLeft: 'auto'}}>
+            <UserEditButton user={user} />
+          </div>
+        </CardActions>
       </Card>
       <Divider />
       <UserTweetList userId={user.id} />

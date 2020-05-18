@@ -1,4 +1,4 @@
-import { UserState, PassUserState } from "reducers/loginUserReducer";
+import { PassUserState, ImageUserState } from "reducers/loginUserReducer";
 
 const baseURL = 'http://localhost';
 
@@ -44,13 +44,15 @@ export const getUser = (id: number) => fetch(`${baseURL}/users/${id}`, {
   }
 });
 
-export const updateUser = (user: UserState) => fetch(`${baseURL}/users/${user.id}`, {
-  method: "PUT",
-  mode: 'cors',
-  credentials: 'include',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(user)
-});
+export const updateUser = (user: ImageUserState) => {
+  const formData = new FormData();
+  formData.append('user', JSON.stringify(user));
+  if(user.image) formData.append('image', user.image);
+
+  return fetch(`${baseURL}/users/${user.id}`, {
+    method: "PUT",
+    mode: 'cors',
+    credentials: 'include',
+    body: formData
+  });
+};
