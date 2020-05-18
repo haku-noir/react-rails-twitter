@@ -11,8 +11,7 @@ const mapStateToProps = (rootState: RootState): TweetListStateAsProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): TweetListDispatchAsProps => ({
-  repeat: bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch),
-  clickItem: (id: number) => dispatch(push(`/tweets/${id}`))
+  repeat: bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch)
 });
 
 export const TweetList = connect(mapStateToProps, mapDispatchToProps)(TweetListComp);

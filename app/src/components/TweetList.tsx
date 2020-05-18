@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { size } from 'size';
 import { TweetsState } from 'reducers/tweetsReducer';
-import { Tweet } from 'components/Tweet';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import { Tweet } from 'containers/Tweet';
 import { TweetSendButton } from 'containers/TweetSendButton';
 
 export type TweetListStateAsProps = TweetsState;
 
 export type TweetListDispatchAsProps = {
-  repeat: () => void,
-  clickItem: (id: number) => void
+  repeat: () => void;
 };
 
 type IProps = TweetListStateAsProps & TweetListDispatchAsProps;
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const TweetList: React.FC<IProps> = (props: IProps) => {
-  const { tweets, repeat, clickItem } = props;
+  const { tweets, repeat } = props;
   const classes = useStyles();
 
   setTimeout(() => repeat(), 5000);
@@ -38,7 +37,7 @@ export const TweetList: React.FC<IProps> = (props: IProps) => {
     <div className={classes.root}>
       <List>
         {tweets.map(tweet => (
-          <ListItem key={tweet.id} alignItems="flex-start" onClick={() => {clickItem(tweet.id)}}>
+          <ListItem key={tweet.id} alignItems="flex-start">
             <Tweet tweet={tweet} />
           </ListItem>
         ))}
