@@ -22,7 +22,7 @@ type IProps = {
 
 export const FormDialog: React.FC<IProps> = (props: IProps) => {
   const { send, open, setOpen, params } = props;
-  const [text, updateText] = React.useState('');
+  const [text, updateText] = React.useState(params.default);
 
   const handleClose = () => {
     setOpen(false);
