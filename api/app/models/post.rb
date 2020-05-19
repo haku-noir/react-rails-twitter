@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  validates :content, {presence: true, length: {maximum: 140}}
+  validates :user_id, {presence: true}
 
   def user
     return User.select(:id, :name, :image_name, :created_at, :updated_at).find_by(id: self.user_id)
