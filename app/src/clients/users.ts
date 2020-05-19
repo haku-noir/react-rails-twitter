@@ -46,7 +46,7 @@ export const getUser = (id: number) => fetch(`${baseURL}/users/${id}`, {
 
 export const updateUser = (user: ImageUserState) => {
   const formData = new FormData();
-  formData.append('user', JSON.stringify(user));
+  formData.append('name', user.name);
   if(user.image) formData.append('image', user.image);
 
   return fetch(`${baseURL}/users/${user.id}`, {

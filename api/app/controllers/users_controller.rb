@@ -49,8 +49,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.name = params[:name]
-    @user.password = params[:password]
+    if params[:name]
+      @user.name = params[:name]
+    end
+    if params[:password]
+      @user.password = params[:password]
+    end
 
     if params[:image]
       @user.image_name = "#{@user.id}.jpg"
