@@ -33,7 +33,7 @@ export const Tweet: React.FC<IProps> = (props: IProps) => {
     <Card className={classes.root} onClick={() => clickCard(tweet.id)}>
       <CardHeader
         avatar={
-          <Avatar alt="Anonymous" src="" />
+          <Avatar alt={tweet.user.name} src={`http://localhost/user_images/${tweet.user.image_name}`} />
         }
         title={
           <Typography component="a" onClick={(event: React.MouseEvent) => {clickUserName(tweet.user.id); event.stopPropagation();}}>

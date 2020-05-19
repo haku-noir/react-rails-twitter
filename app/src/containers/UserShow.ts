@@ -14,7 +14,7 @@ const mapStateToProps = (rootState: RootState, ownProps: RouteComponentProps<{id
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: RouteComponentProps<{id: string}>): UserShowDispatchAsProps => ({
   edit: (text: string, file: File) => {
-    const user: ImageUserState = {id: parseInt(ownProps.match.params.id), name: text, image: file};
+    const user: ImageUserState = {id: parseInt(ownProps.match.params.id), name: text, image_name: '', image: file};
     bindActionCreators(thunkToAction(loginUserActions.updateUser.action), dispatch)(user);
     dispatch(push(`/users/${user.id}`));
   }

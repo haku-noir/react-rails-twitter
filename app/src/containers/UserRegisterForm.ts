@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
     bindActionCreators(thunkToAction(loginUserActions.addUser.action), dispatch)({
       id: 0,
       name: user,
+      image_name: 'default_user.jpg',
       password
     })
     .then((payload) => {

@@ -4,6 +4,7 @@ import { loginUserActions } from 'actions/loginUserActions';
 export type UserState = {
   id: number;
   name: string;
+  image_name: string;
 };
 
 export type PassUserState = UserState & {
