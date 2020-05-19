@@ -3,8 +3,8 @@ import { TweetState } from 'reducers/tweetsReducer';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import { UserImage } from './UserImage';
 
 export type TweetStateAsProps = {
   tweet: TweetState;
@@ -12,7 +12,7 @@ export type TweetStateAsProps = {
 
 export type TweetDispatchAsProps = {
   clickCard: (id: number) => void;
-  clickUserName: (id: number) => void;
+  clickUser: (id: number) => void;
 };
 
 type IProps = TweetStateAsProps & TweetDispatchAsProps;
@@ -26,17 +26,20 @@ const useStyles = makeStyles(() =>
 );
 
 export const Tweet: React.FC<IProps> = (props: IProps) => {
-  const { tweet, clickCard, clickUserName } = props;
+  const { tweet, clickCard, clickUser } = props;
   const classes = useStyles();
 
   return (
     <Card className={classes.root} onClick={() => clickCard(tweet.id)}>
       <CardHeader
         avatar={
-          <Avatar alt={tweet.user.name} src={`http://localhost/user_images/${tweet.user.image_name}`} />
+          <UserImage
+            user={tweet.user}
+            onClick={(event: React.MouseEvent) => {clickUser(tweet.user.id); event.stopPropagation();}}
+          />
         }
         title={
-          <Typography component="a" onClick={(event: React.MouseEvent) => {clickUserName(tweet.user.id); event.stopPropagation();}}>
+          <Typography component="a" onClick={(event: React.MouseEvent) => {clickUser(tweet.user.id); event.stopPropagation();}}>
             {tweet.user.name}
           </Typography>
         }

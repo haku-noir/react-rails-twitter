@@ -12,13 +12,14 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { TweetEditButton } from 'containers/TweetEditButton';
 import { TweetDeleteButton } from 'containers/TweetDeleteButton';
+import { UserImage } from './UserImage';
 
 export type TweetShowStateAsProps = {
   tweet: TweetState
 };
 
 export type TweetShowDispatchAsProps = {
-  clickUserName: (id: number) => void;
+  clickUser: (id: number) => void;
 };
 
 type IProps = TweetShowStateAsProps & TweetShowDispatchAsProps;
@@ -32,17 +33,20 @@ const useStyles = makeStyles(() =>
 );
 
 export const TweetShow: React.FC<IProps> = (props: IProps) => {
-  const { tweet, clickUserName } = props;
+  const { tweet, clickUser } = props;
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar alt="Anonymous" src="" />
+          <UserImage
+            user={tweet.user}
+            onClick={(event: React.MouseEvent) => {clickUser(tweet.user.id); event.stopPropagation();}}
+          />
         }
         title={
-          <Typography component="a" onClick={() => clickUserName(tweet.user.id)}>
+          <Typography component="a" onClick={() => clickUser(tweet.user.id)}>
             {tweet.user.name}
           </Typography>
         }

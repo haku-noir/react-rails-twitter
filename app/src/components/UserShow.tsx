@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { UserFormDialog } from './UserFormDialog';
 import { getUser } from 'clients/users';
 import { UserTweetList } from 'containers/UserTweetList';
+import { UserImage } from './UserImage';
 
 export type UserShowStateAsProps = {
   id: number;
@@ -35,7 +36,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
-  const [user, setUser] = React.useState({id: 0, name: ''});
+  const [user, setUser] = React.useState({id: 0, name: '', image_name: ''});
   React.useEffect(() => {
     const timeId = setInterval(() => getUser(id)
       .then((res) => res.json())
@@ -56,9 +57,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
     <div>
       <Card className={classes.root}>
         <CardHeader
-          avatar={
-            <Avatar alt="Anonymous" src="" />
-          }
+          avatar={<UserImage user={user} />}
           title={user.name}
         />
         <CardActions disableSpacing>

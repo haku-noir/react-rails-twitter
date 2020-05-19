@@ -11,7 +11,7 @@ const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): T
 
 const mapDispatchToProps = (dispatch: Dispatch): TweetDispatchAsProps => ({
   clickCard: (id: number) => dispatch(push(`/tweets/${id}`)),
-  clickUserName: (id: number) => dispatch(push(`/users/${id}`))
+  clickUser: (id: number) => dispatch(push(`/users/${id}`))
 });
 
 export const Tweet = connect(mapStateToProps, mapDispatchToProps)(TweetComp);
