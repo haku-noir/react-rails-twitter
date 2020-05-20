@@ -41,7 +41,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
     const timeId = setInterval(() => getUser(id)
       .then((res) => res.json())
       .then((res) => {
-        setUser(res.data);
+        setUser(res.user);
       }), 1000);
     return () => {clearInterval(timeId)};
   }, [id, open]);

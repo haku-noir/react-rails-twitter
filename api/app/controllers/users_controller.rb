@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.order(updated_at: :desc)
-    render json: { data: @users }
+    render json: { users: @users }
   end
 
   def create
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     )
     if @user.save
       session[:user_id] = @user.id
-      render json: { data: @user }
+      render json: { user: @user }
     else
       render json: {}
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     if @user
       session[:user_id] = @user.id
-      render json: { data: @user }
+      render json: { user: @user }
     else
       render json: {}
     end
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: { data: @user }
+    render json: { user: @user }
   end
 
   def update
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      render json: { data: @user }
+      render json: { user: @user }
     else
       render json: {}
     end

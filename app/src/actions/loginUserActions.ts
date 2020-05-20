@@ -13,7 +13,7 @@ export const loginUserActions = {
       login(user)
         .then((res) => res.json())
         .then((res) => {
-          resolve(res.data);
+          resolve(res.user);
         })
     })
   ),
@@ -32,7 +32,7 @@ export const loginUserActions = {
       addUser(user)
         .then((res) => res.json())
         .then((res) => {
-          resolve(res.data);
+          resolve(res.user);
         })
     })
   ),
@@ -42,7 +42,7 @@ export const loginUserActions = {
     updateUser(user)
       .then((res) => res.json())
       .then((res) => {
-        resolve(res.data);
+        resolve(res.user);
       })
     })
   ),
