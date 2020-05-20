@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, {only: [:index, :show, :update, :logout]}
+  before_action :forbid_login_user, {only: [:create, :login]}
   before_action :set_user, only: [:show, :destroy, :update]
 
   def index
@@ -40,11 +42,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: { data: @user }
-  end
-
-  def destroy
-    @user.destroy
     render json: { data: @user }
   end
 
