@@ -9,7 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
-import { LoginUserState } from 'reducers/loginUserReducer';
+import { UsersState } from 'reducers/usersReducer';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -22,7 +22,7 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-export type MenuAppBarStateAsProps = LoginUserState;
+export type MenuAppBarStateAsProps = UsersState;
 
 export type MenuAppBarDispatchAsProps = {
   clickHome: () => void;

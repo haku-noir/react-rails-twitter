@@ -4,16 +4,16 @@ import { RootState } from 'store';
 import { MenuAppBar as MenuAppBarComp, MenuAppBarStateAsProps, MenuAppBarDispatchAsProps } from 'components/MenuAppBar';
 import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
-import { loginUserActions } from 'actions/loginUserActions';
+import { usersActions } from 'actions/usersActions';
 
 const mapStateToProps = (rootState: RootState): MenuAppBarStateAsProps => (
-  rootState.loginUser
+  rootState.users
 );
 
 const mapDispatchToProps = (dispatch: Dispatch): MenuAppBarDispatchAsProps => ({
   clickHome: () => dispatch(push('/')),
   clickLogin: () => dispatch(push('/users/login')),
-  clickLogout: bindActionCreators(thunkToAction(loginUserActions.logout.action), dispatch),
+  clickLogout: bindActionCreators(thunkToAction(usersActions.logout.action), dispatch),
   clickProfile: (id: number) => dispatch(push(`/users/${id}`))
 });
 

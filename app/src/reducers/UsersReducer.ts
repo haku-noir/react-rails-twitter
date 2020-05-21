@@ -1,5 +1,5 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { loginUserActions } from 'actions/loginUserActions';
+import { usersActions } from 'actions/usersActions';
 
 export type UserState = {
   id: number;
@@ -15,17 +15,17 @@ export type ImageUserState = UserState & {
   image: File;
 };
 
-export type LoginUserState = {
+export type UsersState = {
   user?: UserState;
   loggedin: boolean;
 };
 
-const initialState: LoginUserState = {
+const initialState: UsersState = {
   loggedin: false
 };
 
-export const loginUserReducer = reducerWithInitialState(initialState)
-  .case(loginUserActions.login.async.done, (state: LoginUserState, payload): LoginUserState => {
+export const usersReducer = reducerWithInitialState(initialState)
+  .case(usersActions.login.async.done, (state: UsersState, payload): UsersState => {
     if(payload.result === undefined) return state;
     return {
       ...state,
@@ -33,10 +33,10 @@ export const loginUserReducer = reducerWithInitialState(initialState)
       loggedin: true
     };
   })
-  .case(loginUserActions.logout.async.done, (state: LoginUserState): LoginUserState => ({
+  .case(usersActions.logout.async.done, (state: UsersState): UsersState => ({
     loggedin: false
   }))
-  .case(loginUserActions.addUser.async.done, (state: LoginUserState, payload): LoginUserState => ({
+  .case(usersActions.addUser.async.done, (state: UsersState, payload): UsersState => ({
     ...state,
     user: payload.result,
     loggedin: true

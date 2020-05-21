@@ -1,6 +1,6 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { tweetsActions } from 'actions/tweetsActions';
-import { UserState } from './loginUserReducer';
+import { UserState } from './usersReducer';
 
 export type TweetState = {
   id: number;

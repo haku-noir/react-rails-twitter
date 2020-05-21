@@ -2,9 +2,9 @@ import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from 'store';
 import { UserEditButton as UserEditButtonComp, UserEditButtonStateAsProps, UserEditButtonDispatchAsProps } from 'components/UserEditButton';
-import { UserState, ImageUserState } from 'reducers/loginUserReducer';
+import { UserState, ImageUserState } from 'reducers/usersReducer';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
-import { loginUserActions } from 'actions/loginUserActions';
+import { usersActions } from 'actions/usersActions';
 import { push } from 'connected-react-router';
 
 const mapStateToProps = (rootState: RootState, ownProps: {user: UserState}): UserEditButtonStateAsProps => ({
@@ -19,7 +19,7 @@ const mapStateToProps = (rootState: RootState, ownProps: {user: UserState}): Use
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: {user: UserState}): UserEditButtonDispatchAsProps => ({
   edit: (text: string, file: File) => {
     const user: ImageUserState = {...ownProps.user, name: text, image: file};
-    bindActionCreators(thunkToAction(loginUserActions.updateUser.action), dispatch)(user);
+    bindActionCreators(thunkToAction(usersActions.updateUser.action), dispatch)(user);
     dispatch(push(`/users/${user.id}`));
   }
 });

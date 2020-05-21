@@ -1,4 +1,4 @@
-import { PassUserState, ImageUserState } from "reducers/loginUserReducer";
+import { PassUserState, ImageUserState } from "reducers/usersReducer";
 
 const baseURL = 'http://localhost';
 

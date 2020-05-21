@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import { UserState } from 'reducers/loginUserReducer';
+import { UserState } from 'reducers/usersReducer';
 
 export type UserImageProps = {
   user: UserState;
