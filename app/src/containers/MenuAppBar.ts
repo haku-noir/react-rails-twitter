@@ -7,7 +7,7 @@ import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
 
 const mapStateToProps = (rootState: RootState): MenuAppBarStateAsProps => (
-  rootState.users
+  rootState.users.loginUser
 );
 
 const mapDispatchToProps = (dispatch: Dispatch): MenuAppBarDispatchAsProps => ({

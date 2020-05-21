@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :update]
 
   def index
-    @users = User.order(updated_at: :desc)
+    @users = User.select(:id, :name, :image_name, :created_at, :updated_at).order(updated_at: :desc)
     render json: { users: @users }
   end
 

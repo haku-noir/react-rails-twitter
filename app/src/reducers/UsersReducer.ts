@@ -15,13 +15,19 @@ export type ImageUserState = UserState & {
   image: File;
 };
 
-export type UsersState = {
+export type LoginUserState = {
   user?: UserState;
   loggedin: boolean;
+}
+
+export type UsersState = {
+  loginUser: LoginUserState;
+  showUser: UserState | null;
 };
 
 const initialState: UsersState = {
-  loggedin: false
+  loginUser: {loggedin: false},
+  showUser: null
 };
 
 export const usersReducer = reducerWithInitialState(initialState)
@@ -29,15 +35,22 @@ export const usersReducer = reducerWithInitialState(initialState)
     if(payload.result === undefined) return state;
     return {
       ...state,
-      user: payload.result,
-      loggedin: true
+      loginUser: {
+        user: payload.result,
+        loggedin: true
+      }
     };
   })
   .case(usersActions.logout.async.done, (state: UsersState): UsersState => ({
-    loggedin: false
+    ...state,
+    loginUser: {
+      loggedin: false
+    }
   }))
   .case(usersActions.addUser.async.done, (state: UsersState, payload): UsersState => ({
     ...state,
-    user: payload.result,
-    loggedin: true
+    loginUser: {
+      user: payload.result,
+      loggedin: true
+    }
   }));
