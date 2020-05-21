@@ -9,12 +9,12 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import { UserFormDialog } from './UserFormDialog';
-import { getUser } from 'clients/users';
 import { UserTweetList } from 'containers/UserTweetList';
 import { UserImage } from './UserImage';
+import { UserState } from 'reducers/usersReducer';
 
 export type UserShowStateAsProps = {
-  id: number;
+  user: UserState;
 };
 
 export type UserShowDispatchAsProps = {
@@ -32,19 +32,9 @@ const useStyles = makeStyles(() =>
 );
 
 export const UserShow: React.FC<IProps> = (props: IProps) => {
-  const { id, edit } = props;
-  const classes = useStyles();
-
+  const { user, edit } = props;
   const [open, setOpen] = React.useState(false);
-  const [user, setUser] = React.useState({id: 0, name: '', image_name: ''});
-  React.useEffect(() => {
-    const timeId = setInterval(() => getUser(id)
-      .then((res) => res.json())
-      .then((res) => {
-        setUser(res.user);
-      }), 1000);
-    return () => {clearInterval(timeId)};
-  }, [id, open]);
+  const classes = useStyles();
 
   const dialogParams = {
     title: 'Edit User',
@@ -57,7 +47,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
     <div>
       <Card className={classes.root}>
         <CardHeader
-          avatar={<UserImage user={user} />}
+          avatar={<UserImage user={user} onClick={() => {}} />}
           title={user.name}
         />
         <CardActions disableSpacing>

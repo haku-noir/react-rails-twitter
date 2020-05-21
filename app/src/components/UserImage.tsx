@@ -4,7 +4,7 @@ import { UserState } from 'reducers/usersReducer';
 
 export type UserImageProps = {
   user: UserState;
-  onClick?: (event: React.MouseEvent) => void;
+  onClick: (event: React.MouseEvent) => void;
 };
 
 export const UserImage: React.FC<UserImageProps> = (props: UserImageProps) => {

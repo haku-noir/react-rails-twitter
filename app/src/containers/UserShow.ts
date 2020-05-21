@@ -8,8 +8,8 @@ import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
 import { push } from 'connected-react-router';
 
-const mapStateToProps = (rootState: RootState, ownProps: RouteComponentProps<{id: string}>): UserShowStateAsProps => ({
-  id: parseInt(ownProps.match.params.id)
+const mapStateToProps = (rootState: RootState): UserShowStateAsProps => ({
+  user: rootState.users.showUser
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: RouteComponentProps<{id: string}>): UserShowDispatchAsProps => ({

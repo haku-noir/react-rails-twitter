@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.select(:id, :name, :image_name, :created_at, :updated_at).find(params[:id])
   end
 
   def show

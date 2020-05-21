@@ -53,4 +53,8 @@ export const usersReducer = reducerWithInitialState(initialState)
       user: payload.result,
       loggedin: true
     }
+  }))
+  .case(usersActions.setShowUser.async.done, (state: UsersState, payload): UsersState => ({
+    ...state,
+    showUser: payload.result
   }));
