@@ -15,7 +15,7 @@ const mapStateToProps = (rootState: RootState, ownProps: RouteComponentProps<{id
 const mapDispatchToProps = (dispatch: Dispatch): TweetShowDispatchAsProps => ({
   clickUser: (id: number) => {
     bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(id)
-    .then(() => dispatch(push(`/users/${id}`)))
+    .then(() => dispatch(push('/users/show')))
   }
 });
 

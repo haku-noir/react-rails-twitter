@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch: Dispatch): TweetDispatchAsProps => ({
   clickCard: (id: number) => dispatch(push(`/tweets/${id}`)),
   clickUser: (id: number) => {
     bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(id)
-    .then(() => dispatch(push(`/users/${id}`)))
+    .then(() => dispatch(push('/users/show')))
   }
 });
 

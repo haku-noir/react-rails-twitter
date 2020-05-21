@@ -29,7 +29,7 @@ ReactDOM.render(
             <Route exact path={'/tweets/:id'} component={TweetShow}/>
             <Route exact path={'/users/login'} component={UserLoginForm}/>
             <Route exact path={'/users/register'} component={UserRegisterForm}/>
-            <Route exact path={'/users/:id'} component={UserShow}/>
+            <Route exact path={'/users/show'} component={UserShow}/>
           </Switch>
         </Grid>
       </Grid>

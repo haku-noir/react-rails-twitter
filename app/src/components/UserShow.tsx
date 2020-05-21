@@ -4,7 +4,6 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
@@ -18,7 +17,7 @@ export type UserShowStateAsProps = {
 };
 
 export type UserShowDispatchAsProps = {
-  edit: (text: string, file:File) => void;
+  edit: (user: UserState, text: string, file:File) => void;
 };
 
 type IProps = UserShowStateAsProps & UserShowDispatchAsProps;
@@ -55,7 +54,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
             <IconButton aria-label="edit" color="primary" onClick={() => setOpen(true)}>
               <EditIcon />
             </IconButton>
-            <UserFormDialog open={open} setOpen={setOpen} send={edit} params={dialogParams} />
+            <UserFormDialog open={open} setOpen={setOpen} send={(text: string, file:File) => edit(user, text, file)} params={dialogParams} />
           </div>
         </CardActions>
       </Card>
