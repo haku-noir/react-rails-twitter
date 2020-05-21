@@ -26,7 +26,7 @@ ReactDOM.render(
         <Grid container item justify="center">
           <Switch>
             <Route exact path={'/'} component={TweetList}/>
-            <Route exact path={'/tweets/:id'} component={TweetShow}/>
+            <Route exact path={'/tweets/show'} component={TweetShow}/>
             <Route exact path={'/users/login'} component={UserLoginForm}/>
             <Route exact path={'/users/register'} component={UserRegisterForm}/>
             <Route exact path={'/users/show'} component={UserShow}/>

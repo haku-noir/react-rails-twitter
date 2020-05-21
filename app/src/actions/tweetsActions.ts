@@ -56,7 +56,7 @@ export const tweetsActions = {
       getPost(id)
         .then((res) => res.json())
         .then((res) => {
-          resolve(res.tweet);
+          resolve(res.post);
         });
     })
   ),

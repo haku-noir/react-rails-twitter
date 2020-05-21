@@ -5,6 +5,7 @@ import { Tweet as TweetComp, TweetStateAsProps, TweetDispatchAsProps } from 'com
 import { TweetState } from 'reducers/tweetsReducer';
 import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
+import { tweetsActions } from 'actions/tweetsActions';
 import { usersActions } from 'actions/usersActions';
 
 const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): TweetStateAsProps => ({
@@ -12,7 +13,10 @@ const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): T
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): TweetDispatchAsProps => ({
-  clickCard: (id: number) => dispatch(push(`/tweets/${id}`)),
+  clickCard: (id: number) => {
+    bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(id)
+    .then(() => dispatch(push('/tweets/show')))
+  },
   clickUser: (id: number) => {
     bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(id)
     .then(() => dispatch(push('/users/show')))

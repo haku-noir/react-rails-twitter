@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { size } from 'size';
-import { TweetsState } from 'reducers/tweetsReducer';
+import { TweetsState, TweetState } from 'reducers/tweetsReducer';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { Tweet } from 'containers/Tweet';
 import { TweetSendButton } from 'containers/TweetSendButton';
 
-export type TweetListStateAsProps = TweetsState;
+export type TweetListStateAsProps = {
+  tweets: TweetState[];
+};
 
 export type TweetListDispatchAsProps = {
   repeat: () => void;
