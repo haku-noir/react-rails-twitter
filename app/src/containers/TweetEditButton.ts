@@ -5,7 +5,6 @@ import { EditButton, EditButtonStateAsProps, EditButtonDispatchAsProps } from 'c
 import { TweetState } from 'reducers/tweetsReducer';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { tweetsActions } from 'actions/tweetsActions';
-import { push } from 'connected-react-router';
 
 const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): EditButtonStateAsProps => ({
   dialogParams: {
@@ -19,8 +18,8 @@ const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): E
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: {tweet: TweetState}): EditButtonDispatchAsProps => ({
   edit: (text: string) => {
     const tweet: TweetState = {...ownProps.tweet, content: text};
-    bindActionCreators(thunkToAction(tweetsActions.updateTweet.action), dispatch)(tweet);
-    dispatch(push(`/tweets/${tweet.id}`));
+    bindActionCreators(thunkToAction(tweetsActions.updateTweet.action), dispatch)(tweet)
+    .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id));
   }
 });
 

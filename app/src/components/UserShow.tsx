@@ -5,20 +5,16 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
-import { UserFormDialog } from './UserFormDialog';
 import { UserTweetList } from 'containers/UserTweetList';
 import { UserImage } from './UserImage';
 import { UserState } from 'reducers/usersReducer';
+import { UserEditButton } from 'containers/UserEditButton';
 
 export type UserShowStateAsProps = {
   user: UserState;
 };
 
-export type UserShowDispatchAsProps = {
-  edit: (user: UserState, text: string, file:File) => void;
-};
+export type UserShowDispatchAsProps = {};
 
 type IProps = UserShowStateAsProps & UserShowDispatchAsProps;
 
@@ -31,8 +27,7 @@ const useStyles = makeStyles(() =>
 );
 
 export const UserShow: React.FC<IProps> = (props: IProps) => {
-  const { user, edit } = props;
-  const [open, setOpen] = React.useState(false);
+  const { user } = props;
   const classes = useStyles();
 
   const dialogParams = {
@@ -51,10 +46,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
         />
         <CardActions disableSpacing>
           <div style={{marginLeft: 'auto'}}>
-            <IconButton aria-label="edit" color="primary" onClick={() => setOpen(true)}>
-              <EditIcon />
-            </IconButton>
-            <UserFormDialog open={open} setOpen={setOpen} send={(text: string, file:File) => edit(user, text, file)} params={dialogParams} />
+            <UserEditButton user={user} />
           </div>
         </CardActions>
       </Card>
