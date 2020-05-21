@@ -11,10 +11,12 @@ export type TweetState = {
 
 export type TweetsState = {
   tweets: TweetState[];
+  showTweet: TweetState | null;
 };
 
 const initialState: TweetsState = {
   tweets: [],
+  showTweet: null
 };
 
 export const tweetsReducer = reducerWithInitialState(initialState)
@@ -37,6 +39,10 @@ export const tweetsReducer = reducerWithInitialState(initialState)
   .case(tweetsActions.updateTweet.async.done, (state: TweetsState, payload): TweetsState => ({
     ...state,
     tweets: payload.result
+  }))
+  .case(tweetsActions.setShowTweet.async.done, (state: TweetsState, payload): TweetsState => ({
+    ...state,
+    showTweet: payload.result
   }));
 
 export const findTweetById = (tweets: TweetState[], id: number): TweetState => (
