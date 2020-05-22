@@ -5,6 +5,7 @@ import { MenuAppBar as MenuAppBarComp, MenuAppBarStateAsProps, MenuAppBarDispatc
 import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
+import { tweetsActions } from 'actions/tweetsActions';
 
 const mapStateToProps = (rootState: RootState): MenuAppBarStateAsProps => (
   rootState.users.loginUser
@@ -18,7 +19,10 @@ const mapDispatchToProps = (dispatch: Dispatch): MenuAppBarDispatchAsProps => ({
     bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(id)
     .then(() => dispatch(push('/users/show')))
   },
-  repeat: bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)
+  repeat: () => {
+    bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)();
+    bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch)();
+  }
 });
 
 export const MenuAppBar = connect(mapStateToProps, mapDispatchToProps)(MenuAppBarComp);
