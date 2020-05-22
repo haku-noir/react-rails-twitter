@@ -37,8 +37,16 @@ class UsersController < ApplicationController
     session[:user_id] = nil
   end
 
+  def session_user
+    if @current_user
+      render json: { user: @current_user }
+    else
+      render json: {}
+    end
+  end
+
   def set_user
-    @user = User.select(:id, :name, :image_name, :created_at, :updated_at).find(params[:id])
+    @user = User.select(:id, :name, :image_name, :created_at, :updated_at).find_by(id: params[:id])
   end
 
   def show

@@ -56,3 +56,13 @@ export const updateUser = (user: ImageUserState) => {
     body: formData
   });
 };
+
+export const getSessionUser = () => fetch(`${baseURL}/session`, {
+  method: "GET",
+  mode: 'cors',
+  credentials: 'include',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
