@@ -10,7 +10,11 @@ const createTweets = () => new Promise<TweetsState["tweets"]>(resolve => {
   fetchPosts()
     .then((res) => res.json())
     .then((res) => {
-      resolve(res.posts);
+      if(res.posts){
+        resolve(res.posts);
+      }else{
+        resolve([]);
+      }
     });
 });
 
