@@ -29,15 +29,21 @@ export type MenuAppBarDispatchAsProps = {
   clickLogin: () => void;
   clickLogout: () => void;
   clickProfile: (id: number) => void;
+  repeat: () => void;
 };
 
 type IProps = MenuAppBarStateAsProps & MenuAppBarDispatchAsProps;
 
 export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
-  const { user, loggedin, clickHome, clickLogin, clickLogout, clickProfile } = props;
+  const { user, loggedin, clickHome, clickLogin, clickLogout, clickProfile, repeat } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const classes = useStyles();
+
+  React.useEffect(() => {
+    const timeId = setTimeout(() => repeat(), 5000);
+    return () => {clearTimeout(timeId)}
+  });
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

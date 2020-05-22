@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MenuAppBarDispatchAsProps => ({
   clickProfile: (id: number) => {
     bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(id)
     .then(() => dispatch(push('/users/show')))
-  }
+  },
+  repeat: bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)
 });
 
 export const MenuAppBar = connect(mapStateToProps, mapDispatchToProps)(MenuAppBarComp);
