@@ -5,11 +5,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import { LoginUserState } from 'reducers/usersReducer';
+import { UserImage } from './UserImage';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -68,13 +68,7 @@ export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
           </Typography>
           {loggedin ? (
             <div>
-              <IconButton
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <UserImage user={user} onClick={handleMenu} />
               <Menu
                 anchorEl={anchorEl}
                 anchorOrigin={{
