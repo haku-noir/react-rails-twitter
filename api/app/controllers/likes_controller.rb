@@ -1,13 +1,13 @@
 class LikesController < ApplicationController
   before_action :authenticate_user
 
-  def create
+  def like
     @like = Like.new(user_id: @current_user.id, post_id: params[:post_id])
     @like.save
     render json: { like: @like }
   end
 
-  def destroy
+  def dislike
     @like = Like.find_by(user_id: @current_user.id, post_id: params[:post_id])
     @like.destroy
     render json: {}
