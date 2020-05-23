@@ -11,6 +11,11 @@ class PostsController < ApplicationController
       post_hash = post.attributes
       post_hash.store(:user, post.user)
       post_hash.store(:time, post.time)
+      if Like.find_by(user_id: @current_user.id, post_id: post.id)
+        post_hash.store(:like, true)
+      else
+        post_hash.store(:like, false)
+      end
       @posts_array << post_hash
     end
     render json: { posts: @posts_array }
@@ -38,6 +43,11 @@ class PostsController < ApplicationController
     @post_hash = @post.attributes
     @post_hash.store(:user, @post.user)
     @post_hash.store(:time, @post.time)
+    if Like.find_by(user_id: @current_user.id, post_id: @post.id)
+      @post_hash.store(:like, true)
+    else
+      @post_hash.store(:like, false)
+    end
   end
 
   def show
