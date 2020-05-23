@@ -12,13 +12,16 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { TweetEditButton } from 'containers/TweetEditButton';
 import { TweetDeleteButton } from 'containers/TweetDeleteButton';
 import { UserImage } from './UserImage';
+import { UserState, LoginUserState } from 'reducers/usersReducer';
 
 export type TweetShowStateAsProps = {
-  tweet: TweetState
+  tweet: TweetState,
+  loginUser: LoginUserState
 };
 
 export type TweetShowDispatchAsProps = {
   clickUser: (id: number) => void;
+  clickLike: (user: UserState, tweet: TweetState) => void;
 };
 
 type IProps = TweetShowStateAsProps & TweetShowDispatchAsProps;
@@ -32,8 +35,9 @@ const useStyles = makeStyles(() =>
 );
 
 export const TweetShow: React.FC<IProps> = (props: IProps) => {
-  const { tweet, clickUser } = props;
+  const { tweet, loginUser, clickUser, clickLike } = props;
   const classes = useStyles();
+  console.log(tweet.like)
 
   return (
     <Card className={classes.root}>
@@ -57,9 +61,12 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="favorite">
-          <FavoriteIcon />
-        </IconButton>
+        {loginUser.loggedin ? (
+          <IconButton onClick={() => clickLike(loginUser.user, tweet)}>
+            <FavoriteIcon color={tweet.like ? "secondary" : "inherit"}/>
+          </IconButton>
+          ) : (<div></div>)
+        }
         <div style={{marginLeft: 'auto'}}>
           <TweetEditButton tweet={tweet} />
           <TweetDeleteButton id={tweet.id} />

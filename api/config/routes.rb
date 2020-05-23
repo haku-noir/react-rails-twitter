@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   post "login" => "users#login"
   post "logout" => "users#logout"
   get "session" => "users#session_user"
-  post "like" => "like#like"
-  post "dislike" => "like#dislike"
+  post "like" => "likes#like"
+  post "dislike" => "likes#dislike"
 end

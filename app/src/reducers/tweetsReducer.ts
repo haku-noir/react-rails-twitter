@@ -7,7 +7,7 @@ export type TweetState = {
   content: string;
   user?: UserState;
   time?: string;
-  like?: string;
+  like?: boolean;
 };
 
 export type TweetsState = {
