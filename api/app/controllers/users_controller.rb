@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user, {only: [:index, :show, :update, :logout]}
   before_action :forbid_login_user, {only: [:create, :login]}
   before_action :set_user, only: [:show, :destroy, :update]
+  before_action :set_user_hash, only: [:show]
 
   def index
     @users = User.select(:id, :name, :image_name, :created_at, :updated_at).order(updated_at: :desc)
@@ -39,7 +40,9 @@ class UsersController < ApplicationController
 
   def session_user
     if @current_user
-      render json: { user: @current_user }
+      @current_user_hash = @current_user.attributes
+      @current_user_hash.store(:likes, @current_user.like_posts)
+      render json: { user: @current_user_hash }
     else
       render json: {}
     end
@@ -49,8 +52,13 @@ class UsersController < ApplicationController
     @user = User.select(:id, :name, :image_name, :created_at, :updated_at).find_by(id: params[:id])
   end
 
+  def set_user_hash
+    @user_hash = @user.attributes
+    @user_hash.store(:likes, @user.like_posts)
+  end
+
   def show
-    render json: { user: @user }
+    render json: { user: @user_hash }
   end
 
   def update
