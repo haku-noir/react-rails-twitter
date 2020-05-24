@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { size } from 'size';
-import { TweetState } from 'reducers/tweetsReducer';
+import { TweetState, checkTweetByUserLikes } from 'reducers/tweetsReducer';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -37,7 +37,6 @@ const useStyles = makeStyles(() =>
 export const TweetShow: React.FC<IProps> = (props: IProps) => {
   const { tweet, loginUser, clickUser, clickLike } = props;
   const classes = useStyles();
-  console.log(tweet.like)
 
   return (
     <Card className={classes.root}>
@@ -63,7 +62,7 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
       <CardActions disableSpacing>
         {loginUser.loggedin ? (
           <IconButton onClick={() => clickLike(loginUser.user, tweet)}>
-            <FavoriteIcon color={tweet.like ? "secondary" : "inherit"}/>
+            <FavoriteIcon color={checkTweetByUserLikes(tweet, loginUser.user.likes) ? "secondary" : "inherit"}/>
           </IconButton>
           ) : (<div></div>)
         }

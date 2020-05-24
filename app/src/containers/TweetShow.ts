@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch: Dispatch): TweetShowDispatchAsProps => ({
     const change = tweet.like ? dislike : like;
     change(user.id, tweet.id)
     .then(() => bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch)())
+    .then(() => bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)())
     .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id))
   }
 });
