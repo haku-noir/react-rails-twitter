@@ -62,7 +62,7 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
       <CardActions disableSpacing>
         {loginUser.loggedin ? (
           <IconButton onClick={() => clickLike(loginUser.user, tweet)}>
-            <FavoriteIcon color={checkTweetByUserLikes(tweet, loginUser.user.likes) ? "secondary" : "inherit"}/>
+            <FavoriteIcon color={checkTweetByUserLikes(tweet, loginUser.user) ? "secondary" : "inherit"}/>
           </IconButton>
           ) : (<div></div>)
         }

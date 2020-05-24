@@ -46,14 +46,14 @@ export const tweetsReducer = reducerWithInitialState(initialState)
     showTweet: payload.result
   }));
 
-export const findTweetsByUserId = (tweets: TweetState[], id: number): TweetState[] => (
-  tweets.filter(tweet => tweet.user.id == id)
+export const findTweetsByUserId = (tweets: TweetState[], user: UserState): TweetState[] => (
+  tweets.filter(tweet => tweet.user.id == user.id)
 );
 
-export const findTweetsByUserLikes = (tweets: TweetState[], likes: number[]): TweetState[] => (
-  tweets.filter(tweet => likes.find(like => like == tweet.id))
+export const findTweetsByUserLikes = (tweets: TweetState[], user: UserState): TweetState[] => (
+  tweets.filter(tweet => user.likes.find(like => like == tweet.id))
 );
 
-export const checkTweetByUserLikes = (tweet: TweetState, likes: number[]): number => (
-  likes.find(like => like == tweet.id)
+export const checkTweetByUserLikes = (tweet: TweetState, user: UserState): number => (
+  user.likes.find(like => like == tweet.id)
 );
