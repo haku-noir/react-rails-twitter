@@ -5,6 +5,7 @@ export type UserState = {
   id: number;
   name: string;
   image_name: string;
+  likes?: number[];
 };
 
 export type PassUserState = UserState & {

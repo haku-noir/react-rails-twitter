@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import { UserState } from 'reducers/usersReducer';
 import { UserTweetList } from 'containers/UserTweetList';
+import { UserLikeList } from 'containers/UserLikeList';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -26,7 +27,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box>
           {children}
         </Box>
       )}
@@ -78,14 +79,14 @@ export const UserTabs = (props: IProps) => {
           aria-label="full width tabs example"
         >
           <Tab label="Tweet" {...a11yProps(0)} />
-          <Tab label="Likes" {...a11yProps(1)} />
+          <Tab label="Like" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        <UserTweetList userId ={user.id} />
+        <UserTweetList user ={user} />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-        Likes
+        <UserLikeList user={user} />
       </TabPanel>
     </div>
   );

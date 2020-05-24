@@ -2,13 +2,13 @@ import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from 'store';
 import { TweetList, TweetListStateAsProps, TweetListDispatchAsProps } from 'components/TweetList';
-import { findTweetsByUserId } from 'reducers/tweetsReducer';
+import { findTweetsByUserLikes } from 'reducers/tweetsReducer';
 import { UserState } from 'reducers/usersReducer';
 
 const mapStateToProps = (rootState: RootState, ownProps: {user: UserState}): TweetListStateAsProps => ({
-  tweets: findTweetsByUserId(rootState.tweets.tweets, ownProps.user.id)
+  tweets: findTweetsByUserLikes(rootState.tweets.tweets, ownProps.user.likes)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): TweetListDispatchAsProps => ({});
 
-export const UserTweetList = connect(mapStateToProps, mapDispatchToProps)(TweetList);
+export const UserLikeList = connect(mapStateToProps, mapDispatchToProps)(TweetList);

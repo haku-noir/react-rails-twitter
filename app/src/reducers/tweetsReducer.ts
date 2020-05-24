@@ -49,3 +49,7 @@ export const tweetsReducer = reducerWithInitialState(initialState)
 export const findTweetsByUserId = (tweets: TweetState[], id: number): TweetState[] => (
   tweets.filter(tweet => tweet.user.id == id)
 );
+
+export const findTweetsByUserLikes = (tweets: TweetState[], likes: number[]): TweetState[] => (
+  tweets.filter(tweet => likes.find(like => like == tweet.id))
+);
