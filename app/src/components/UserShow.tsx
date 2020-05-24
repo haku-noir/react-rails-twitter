@@ -5,10 +5,10 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import Divider from '@material-ui/core/Divider';
-import { UserTweetList } from 'containers/UserTweetList';
 import { UserImage } from './UserImage';
 import { UserState } from 'reducers/usersReducer';
 import { UserEditButton } from 'containers/UserEditButton';
+import { UserTabs } from './UserTabs';
 
 export type UserShowStateAsProps = {
   user: UserState;
@@ -51,7 +51,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
         </CardActions>
       </Card>
       <Divider />
-      <UserTweetList userId={user.id} />
+      <UserTabs user={user} />
     </div>
   );
 };
