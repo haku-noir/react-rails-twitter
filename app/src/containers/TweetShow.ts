@@ -6,9 +6,8 @@ import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
 import { UserState } from 'reducers/usersReducer';
-import { TweetState } from 'reducers/tweetsReducer';
+import { TweetState, checkTweetByUserLikes } from 'reducers/tweetsReducer';
 import { like, dislike } from 'clients/likes';
-import { tweetsActions } from 'actions/tweetsActions';
 
 const mapStateToProps = (rootState: RootState): TweetShowStateAsProps => ({
   tweet: rootState.tweets.showTweet,
@@ -21,11 +20,9 @@ const mapDispatchToProps = (dispatch: Dispatch): TweetShowDispatchAsProps => ({
     .then(() => dispatch(push('/users/show')))
   },
   clickLike: (user: UserState, tweet: TweetState) => {
-    const change = tweet.like ? dislike : like;
+    const change = checkTweetByUserLikes(tweet, user) ? dislike : like;
     change(user.id, tweet.id)
-    .then(() => bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch)())
     .then(() => bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)())
-    .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id))
   }
 });
 
