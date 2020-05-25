@@ -73,7 +73,7 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
         }
         <div style={{marginLeft: 'auto'}}>
           <TweetEditButton tweet={tweet} />
-          <TweetDeleteButton id={tweet.id} />
+          <TweetDeleteButton tweet={tweet} />
         </div>
       </CardActions>
     </Card>

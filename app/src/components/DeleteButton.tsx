@@ -2,24 +2,24 @@ import * as React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-export type DeleteButtonStateAsProps = {};
+export type DeleteButtonStateAsProps = {
+  isVisible: boolean;
+};
 
 export type DeleteButtonDispatchAsProps = {
-  destroy: (id: number) => void;
+  destroy: () => void;
 };
 
-type DeleteButtonOwnProps = {
-  id: number;
-};
-
-type IProps = DeleteButtonStateAsProps & DeleteButtonDispatchAsProps & DeleteButtonOwnProps;
+type IProps = DeleteButtonStateAsProps & DeleteButtonDispatchAsProps;
 
 export const DeleteButton: React.FC<IProps> = (props: IProps) => {
-  const { destroy, id } = props;
+  const { isVisible, destroy } = props;
 
   return (
-    <IconButton aria-label="destroy" color="secondary" onClick={() => destroy(id)}>
-      <DeleteIcon />
-    </IconButton>
+    <div  style={{display: isVisible ? "inline" : "none"}}>
+      <IconButton aria-label="destroy" color="secondary" onClick={() => destroy()}>
+        <DeleteIcon />
+      </IconButton>
+    </div>
   );
 };
