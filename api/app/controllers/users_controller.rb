@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :forbid_login_user, {only: [:create, :login]}
   before_action :set_user, only: [:show, :destroy, :update]
   before_action :set_user_hash, only: [:show]
+  before_action :ensure_correct_user, {only: [:update]}
 
   def create
     @user = User.new(
@@ -54,6 +55,12 @@ class UsersController < ApplicationController
 
   def show
     render json: { user: @user_hash }
+  end
+
+  def ensure_correct_user
+    if @current_user.id != params[:id].to_i
+      render json: {}
+    end
   end
 
   def update

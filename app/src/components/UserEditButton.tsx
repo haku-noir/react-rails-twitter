@@ -6,6 +6,7 @@ import { FormDialogParams } from './FormDialog';
 
 export type UserEditButtonStateAsProps = {
   dialogParams: FormDialogParams;
+  isVisible: boolean;
 };
 
 export type UserEditButtonDispatchAsProps = {
@@ -15,11 +16,11 @@ export type UserEditButtonDispatchAsProps = {
 type IProps = UserEditButtonStateAsProps & UserEditButtonDispatchAsProps;
 
 export const UserEditButton: React.FC<IProps> = (props: IProps) => {
-  const { edit, dialogParams } = props;
+  const { isVisible, dialogParams, edit } = props;
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div>
+    <div style={{display: isVisible ? "inline" : "none"}}>
       <IconButton aria-label="edit" color="primary" onClick={() => setOpen(true)}>
         <EditIcon />
       </IconButton>
