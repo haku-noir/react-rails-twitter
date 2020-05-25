@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, {only: [:create, :destroy, :update]}
   before_action :set_post, only: [:show, :destroy, :update]
   before_action :set_post_hash, only: [:show, :destroy, :update]
 

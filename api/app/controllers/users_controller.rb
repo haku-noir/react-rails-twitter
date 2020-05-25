@@ -1,13 +1,8 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, {only: [:index, :show, :update, :logout]}
+  before_action :authenticate_user, {only: [:update, :logout]}
   before_action :forbid_login_user, {only: [:create, :login]}
   before_action :set_user, only: [:show, :destroy, :update]
   before_action :set_user_hash, only: [:show]
-
-  def index
-    @users = User.select(:id, :name, :image_name, :created_at, :updated_at).order(updated_at: :desc)
-    render json: { users: @users }
-  end
 
   def create
     @user = User.new(
