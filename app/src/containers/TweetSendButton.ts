@@ -11,7 +11,8 @@ const mapStateToProps = (rootState: RootState): SendButtonStateAsProps => ({
     label: 'Tweet',
     button: 'Send',
     default: ''
-  }
+  },
+  isVisible: rootState.users.loginUser.loggedin
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): SendButtonDispatchAsProps => ({

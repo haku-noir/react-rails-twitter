@@ -6,6 +6,7 @@ import { FormDialog, FormDialogParams } from './FormDialog';
 
 export type SendButtonStateAsProps = {
   dialogParams: FormDialogParams;
+  isVisible: boolean;
 };
 
 export type SendButtonDispatchAsProps = {
@@ -25,12 +26,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const SendButton: React.FC<IProps> = (props: IProps) => {
-  const { send, dialogParams } = props;
+  const { isVisible, dialogParams, send } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
   return (
-    <div>
+    <div style={{display: isVisible ? "inline" : "none"}}>
       <Fab color="primary" aria-label="send" className={classes.fab} onClick={() => setOpen(true)}>
         <SendIcon />
       </Fab>
