@@ -10,4 +10,8 @@ class Post < ApplicationRecord
     return self.updated_at.strftime("%Y/%m/%d %H:%M")
   end
 
+  def likes_count
+    return Like.where(post_id: self.id).count
+  end
+
 end
