@@ -8,7 +8,7 @@ import { tweetsActions } from 'actions/tweetsActions';
 import { push } from 'connected-react-router';
 
 const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): DeleteButtonStateAsProps => ({
-  isVisible: rootState.users.loginUser.user.id == ownProps.tweet.user.id
+  isVisible: rootState.users.loginUser.loggedin && (rootState.users.loginUser.user.id == ownProps.tweet.user.id)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: {tweet: TweetState}): DeleteButtonDispatchAsProps => ({
