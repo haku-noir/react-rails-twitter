@@ -12,7 +12,8 @@ const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): E
     label: 'Tweet',
     button: 'OK',
     default: ownProps.tweet.content
-  }
+  },
+  isVisible: rootState.users.loginUser.user.id == ownProps.tweet.user.id
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: {tweet: TweetState}): EditButtonDispatchAsProps => ({

@@ -5,6 +5,7 @@ import { FormDialog, FormDialogParams } from './FormDialog';
 
 export type EditButtonStateAsProps = {
   dialogParams: FormDialogParams;
+  isVisible: boolean;
 };
 
 export type EditButtonDispatchAsProps = {
@@ -14,11 +15,11 @@ export type EditButtonDispatchAsProps = {
 type IProps = EditButtonStateAsProps & EditButtonDispatchAsProps;
 
 export const EditButton: React.FC<IProps> = (props: IProps) => {
-  const { edit, dialogParams } = props;
+  const { isVisible, dialogParams, edit } = props;
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div>
+    <div style={{display: isVisible ? "inline" : "none"}}>
       <IconButton aria-label="edit" color="primary" onClick={() => setOpen(true)}>
         <EditIcon />
       </IconButton>
