@@ -38,6 +38,8 @@ class UsersController < ApplicationController
     if @current_user
       @current_user_hash = @current_user.attributes
       @current_user_hash.store(:likes, @current_user.like_posts)
+      @current_user_hash.store(:followers, @current_user.follower_ids)
+      @current_user_hash.store(:following_users, @current_user.following_user_ids)
       render json: { user: @current_user_hash }
     else
       render json: {}
@@ -51,6 +53,8 @@ class UsersController < ApplicationController
   def set_user_hash
     @user_hash = @user.attributes
     @user_hash.store(:likes, @user.like_posts)
+    @user_hash.store(:followers, @user.follower_ids)
+    @user_hash.store(:following_users, @user.following_user_ids)
   end
 
   def show
