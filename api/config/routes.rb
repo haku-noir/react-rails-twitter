@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get "session" => "users#session_user"
   post "like" => "likes#like"
   post "dislike" => "likes#dislike"
+  post "follow" => "follows#follow"
+  post "unfollow" => "follows#unfollow"
 end
