@@ -6,6 +6,8 @@ export type UserState = {
   name: string;
   image_name: string;
   likes?: number[];
+  followers?: number[];
+  following_users?: number[];
 };
 
 export type PassUserState = UserState & {
@@ -63,3 +65,8 @@ export const usersReducer = reducerWithInitialState(initialState)
     ...state,
     loginUser: payload.result
   }));
+
+
+export const isFollowerByUser = (follower: UserState, user: UserState): number => (
+  follower.following_users.find(following_user => following_user == user.id)
+);

@@ -4,17 +4,22 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { UserImage } from './UserImage';
-import { UserState } from 'reducers/usersReducer';
+import { UserState, LoginUserState, isFollowerByUser } from 'reducers/usersReducer';
 import { UserEditButton } from 'containers/UserEditButton';
 import { UserTabs } from './UserTabs';
+import { blue, common } from '@material-ui/core/colors';
 
 export type UserShowStateAsProps = {
   user: UserState;
+  loginUser: LoginUserState;
 };
 
-export type UserShowDispatchAsProps = {};
+export type UserShowDispatchAsProps = {
+  clickFollow: (user: UserState, follower: UserState) => void;
+};
 
 type IProps = UserShowStateAsProps & UserShowDispatchAsProps;
 
@@ -27,7 +32,7 @@ const useStyles = makeStyles(() =>
 );
 
 export const UserShow: React.FC<IProps> = (props: IProps) => {
-  const { user } = props;
+  const { user, loginUser, clickFollow } = props;
   const classes = useStyles();
 
   const dialogParams = {
@@ -45,6 +50,30 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
           title={user.name}
         />
         <CardActions disableSpacing>
+          {loginUser.loggedin ? (
+            <div>
+              {isFollowerByUser(loginUser.user, user) ? (
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => clickFollow(user, loginUser.user)}
+                  color="inherit"
+                  style={{backgroundColor: blue[500]}}
+                >
+                  Following
+                </Button>
+              ) : (
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => clickFollow(user, loginUser.user)}
+                  color="primary"
+                >
+                  Follow
+                </Button>
+              )}
+            </div>
+          ) : (<div></div>)}
           <div style={{marginLeft: 'auto'}}>
             <UserEditButton user={user} />
           </div>
