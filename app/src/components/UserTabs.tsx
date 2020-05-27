@@ -8,6 +8,7 @@ import { UserState, findFollower, findFollowingUser } from 'reducers/usersReduce
 import { UserTweetList } from 'containers/UserTweetList';
 import { UserLikeList } from 'containers/UserLikeList';
 import { fetchUsers } from 'clients/users';
+import { UserList } from './UserList';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -76,8 +77,6 @@ export const UserTabs = (props: IProps) => {
         setUsers(res.users);
       })
   }, [user]);
-  console.log(findFollower(users, user))
-  console.log(findFollowingUser(users, user))
 
   return (
     <div className={classes.root}>
@@ -93,7 +92,7 @@ export const UserTabs = (props: IProps) => {
           <Tab label="Tweet" {...a11yProps(0)} />
           <Tab label="Like" {...a11yProps(1)} />
           <Tab label="Follower" {...a11yProps(2)} />
-          <Tab label="Followein User" {...a11yProps(3)} />
+          <Tab label="Followeing User" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
@@ -103,8 +102,10 @@ export const UserTabs = (props: IProps) => {
         <UserLikeList user={user} />
       </TabPanel>
       <TabPanel value={value} index={2} dir={theme.direction}>
+        <UserList users={findFollower(users, user)} />
       </TabPanel>
       <TabPanel value={value} index={3} dir={theme.direction}>
+        <UserList users={findFollowingUser(users, user)} />
       </TabPanel>
     </div>
   );
