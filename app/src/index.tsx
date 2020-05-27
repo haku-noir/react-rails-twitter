@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { MenuAppBar } from 'containers/MenuAppBar';
 import { TweetList } from 'containers/TweetList';
 import { TweetShow } from 'containers/TweetShow';
+import { UserListPanel } from 'components/UserListPanel';
 import { UserLoginForm } from 'containers/UserLoginForm';
 import { UserRegisterForm } from 'containers/UserRegisterForm';
 import { UserShow } from 'containers/UserShow';
@@ -27,6 +28,7 @@ ReactDOM.render(
           <Switch>
             <Route exact path={'/'} component={TweetList}/>
             <Route exact path={'/tweets/show'} component={TweetShow}/>
+            <Route exact path={'/users'} component={UserListPanel}/>
             <Route exact path={'/users/login'} component={UserLoginForm}/>
             <Route exact path={'/users/register'} component={UserRegisterForm}/>
             <Route exact path={'/users/show'} component={UserShow}/>
