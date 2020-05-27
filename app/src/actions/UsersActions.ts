@@ -1,12 +1,22 @@
 import actionCreatorFactory from 'typescript-fsa';
 import asyncFactory from 'typescript-fsa-redux-thunk';
 import { UserState, PassUserState, UsersState, ImageUserState, LoginUserState } from 'reducers/usersReducer';
-import { addUser, login, logout, updateUser, getUser, getSessionUser } from 'clients/users';
+import { addUser, login, logout, updateUser, getUser, getSessionUser, fetchUsers } from 'clients/users';
 
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<UsersState>(actionCreator);
 
 export const usersActions = {
+  fetchUsers: asyncActionCreator<void, UserState[]>(
+    'FETCH_USERS',
+    () => new Promise(resolve => {
+      fetchUsers()
+        .then((res) => res.json())
+        .then((res) => {
+          resolve(res.users);
+        })
+    })
+  ),
   login: asyncActionCreator<PassUserState, UserState>(
     'LOGIN',
     (user: PassUserState) => new Promise(resolve => {

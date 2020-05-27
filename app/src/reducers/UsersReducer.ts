@@ -24,16 +24,22 @@ export type LoginUserState = {
 }
 
 export type UsersState = {
+  users: UserState[];
   loginUser: LoginUserState;
   showUser: UserState | null;
 };
 
 const initialState: UsersState = {
+  users: [],
   loginUser: {loggedin: false},
   showUser: null
 };
 
 export const usersReducer = reducerWithInitialState(initialState)
+  .case(usersActions.fetchUsers.async.done, (state: UsersState, payload): UsersState => ({
+    ...state,
+    users: payload.result
+  }))
   .case(usersActions.login.async.done, (state: UsersState, payload): UsersState => {
     if(payload.result === undefined) return state;
     return {
