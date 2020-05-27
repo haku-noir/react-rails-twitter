@@ -7,16 +7,6 @@ const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<UsersState>(actionCreator);
 
 export const usersActions = {
-  fetchUsers: asyncActionCreator<void, UserState[]>(
-    'FETCH_USERS',
-    () => new Promise(resolve => {
-      fetchUsers()
-        .then((res) => res.json())
-        .then((res) => {
-          resolve(res.users);
-        })
-    })
-  ),
   login: asyncActionCreator<PassUserState, UserState>(
     'LOGIN',
     (user: PassUserState) => new Promise(resolve => {
