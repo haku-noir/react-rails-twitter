@@ -21,6 +21,7 @@ const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
       id: 0,
       name: user,
       image_name: '',
+      profile: '',
       password
     })
     .then((payload) => {

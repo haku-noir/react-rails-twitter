@@ -3,7 +3,9 @@ import { size } from 'size';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { UserImage } from './UserImage';
@@ -49,6 +51,11 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
           avatar={<UserImage user={user} onClick={() => {}} />}
           title={user.name}
         />
+        <CardContent>
+          <Typography variant="body1" component="p">
+            {user.profile}
+          </Typography>
+        </CardContent>
         <CardActions disableSpacing>
           {loginUser.loggedin ? (
             <div>

@@ -5,6 +5,7 @@ export type UserState = {
   id: number;
   name: string;
   image_name: string;
+  profile: string;
   likes?: number[];
   followers?: number[];
   following_users?: number[];
