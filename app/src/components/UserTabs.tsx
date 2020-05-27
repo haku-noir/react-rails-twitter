@@ -86,7 +86,8 @@ export const UserTabs = (props: IProps) => {
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
-          variant="fullWidth"
+          variant="scrollable"
+          scrollButtons="auto"
           aria-label="full width tabs example"
         >
           <Tab label="Tweet" {...a11yProps(0)} />
