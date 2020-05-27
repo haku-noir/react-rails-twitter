@@ -72,6 +72,13 @@ export const usersReducer = reducerWithInitialState(initialState)
     loginUser: payload.result
   }));
 
+export const findFollower = (users: UserState[], user: UserState): UserState[] => (
+  users.filter(follower => user.followers.find(follower_id => follower_id == follower.id))
+);
+
+export const findFollowingUser = (users: UserState[], user: UserState): UserState[] => (
+  users.filter(following_user => user.following_users.find(following_user_id => following_user_id == following_user.id))
+);
 
 export const isFollowerByUser = (follower: UserState, user: UserState): number => (
   follower.following_users.find(following_user => following_user == user.id)

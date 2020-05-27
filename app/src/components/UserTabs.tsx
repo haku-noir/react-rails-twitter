@@ -4,9 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import { UserState } from 'reducers/usersReducer';
+import { UserState, findFollower, findFollowingUser } from 'reducers/usersReducer';
 import { UserTweetList } from 'containers/UserTweetList';
 import { UserLikeList } from 'containers/UserLikeList';
+import { fetchUsers } from 'clients/users';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -67,6 +68,17 @@ export const UserTabs = (props: IProps) => {
     setValue(index);
   };
 
+  const [users, setUsers] = React.useState([]);
+  React.useEffect(() => {
+    fetchUsers()
+      .then((res) => res.json())
+      .then((res) => {
+        setUsers(res.users);
+      })
+  }, [user]);
+  console.log(findFollower(users, user))
+  console.log(findFollowingUser(users, user))
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -80,6 +92,8 @@ export const UserTabs = (props: IProps) => {
         >
           <Tab label="Tweet" {...a11yProps(0)} />
           <Tab label="Like" {...a11yProps(1)} />
+          <Tab label="Follower" {...a11yProps(2)} />
+          <Tab label="Followein User" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
@@ -87,6 +101,10 @@ export const UserTabs = (props: IProps) => {
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <UserLikeList user={user} />
+      </TabPanel>
+      <TabPanel value={value} index={2} dir={theme.direction}>
+      </TabPanel>
+      <TabPanel value={value} index={3} dir={theme.direction}>
       </TabPanel>
     </div>
   );
