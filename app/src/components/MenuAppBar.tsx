@@ -19,6 +19,9 @@ const useStyles = makeStyles(() =>
     title: {
       flexGrow: 1,
     },
+    button: {
+      marginRight: 10,
+    }
   }),
 );
 
@@ -26,6 +29,7 @@ export type MenuAppBarStateAsProps = LoginUserState;
 
 export type MenuAppBarDispatchAsProps = {
   clickHome: () => void;
+  clickUserList: () => void;
   clickLogin: () => void;
   clickLogout: () => void;
   clickProfile: (id: number) => void;
@@ -35,7 +39,7 @@ export type MenuAppBarDispatchAsProps = {
 type IProps = MenuAppBarStateAsProps & MenuAppBarDispatchAsProps;
 
 export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
-  const { user, loggedin, clickHome, clickLogin, clickLogout, clickProfile, repeat } = props;
+  const { user, loggedin, clickHome, clickUserList, clickLogin, clickLogout, clickProfile, repeat } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const classes = useStyles();
@@ -58,6 +62,7 @@ export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            className={classes.button}
             onClick={clickHome}
             color="inherit"
           >
@@ -66,6 +71,14 @@ export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
           <Typography variant="h6" className={classes.title}>
             TweetApp
           </Typography>
+          <Button
+            className={classes.button}
+            onClick={clickUserList}
+            color="inherit"
+            variant="text"
+          >
+            User List
+          </Button>
           {loggedin ? (
             <div>
               <UserImage user={user} onClick={handleMenu} />

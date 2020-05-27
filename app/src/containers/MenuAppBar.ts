@@ -13,6 +13,7 @@ const mapStateToProps = (rootState: RootState): MenuAppBarStateAsProps => (
 
 const mapDispatchToProps = (dispatch: Dispatch): MenuAppBarDispatchAsProps => ({
   clickHome: () => dispatch(push('/')),
+  clickUserList: () => dispatch(push('/users')),
   clickLogin: () => dispatch(push('/users/login')),
   clickLogout: bindActionCreators(thunkToAction(usersActions.logout.action), dispatch),
   clickProfile: (id: number) => {
