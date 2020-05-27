@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :set_current_user
 
   def set_current_user
-    @current_user = User.select(:id, :name, :image_name, :created_at, :updated_at).find_by(id: session[:user_id])
+    @current_user = User.select(:id, :name, :image_name, :profile, :created_at, :updated_at).find_by(id: session[:user_id])
   end
 
   def authenticate_user
