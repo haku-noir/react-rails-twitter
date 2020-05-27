@@ -5,6 +5,11 @@ class UsersController < ApplicationController
   before_action :set_user_hash, only: [:show]
   before_action :ensure_correct_user, {only: [:update]}
 
+  def index
+    @users = User.select(:id, :name, :image_name, :created_at, :updated_at).order(created_at: :desc)
+    render json: { users: @users }
+  end
+
   def create
     @user = User.new(
       name: params[:name],

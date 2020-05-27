@@ -2,6 +2,16 @@ import { PassUserState, ImageUserState } from "reducers/usersReducer";
 
 const baseURL = 'http://localhost';
 
+export const fetchUsers = () => fetch(`${baseURL}/users`, {
+  method: "GET",
+  mode: 'cors',
+  credentials: 'include',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
+
 export const addUser = (user: PassUserState) => fetch(`${baseURL}/users`, {
   method: "POST",
   mode: 'cors',
