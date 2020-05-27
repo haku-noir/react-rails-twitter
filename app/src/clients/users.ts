@@ -58,6 +58,7 @@ export const updateUser = (user: ImageUserState) => {
   const formData = new FormData();
   formData.append('name', user.name);
   if(user.image) formData.append('image', user.image);
+  formData.append('profile', user.profile);
 
   return fetch(`${baseURL}/users/${user.id}`, {
     method: "PUT",

@@ -1,16 +1,15 @@
 import * as React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-import { UserFormDialog } from './UserFormDialog';
-import { FormDialogParams } from './FormDialog';
+import { UserFormDialog, UserFormDialogParams } from './UserFormDialog';
 
 export type UserEditButtonStateAsProps = {
-  dialogParams: FormDialogParams;
+  dialogParams: UserFormDialogParams;
   isVisible: boolean;
 };
 
 export type UserEditButtonDispatchAsProps = {
-  edit: (text: string, file:File) => void;
+  edit: (text: string, file: File, profile: string) => void;
 };
 
 type IProps = UserEditButtonStateAsProps & UserEditButtonDispatchAsProps;
