@@ -25,7 +25,10 @@ const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
       password
     })
     .then((payload) => {
-      if(payload !== undefined) dispatch(push('/'));
+      if(payload !== undefined){
+        bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
+        .then(() => dispatch(push('/')));
+      }
     });
   }
 });

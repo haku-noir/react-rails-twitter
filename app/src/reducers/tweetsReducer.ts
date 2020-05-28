@@ -54,6 +54,10 @@ export const findTweetsByUserLikes = (tweets: TweetState[], user: UserState): Tw
   tweets.filter(tweet => user.likes.find(like => like == tweet.id))
 );
 
+export const findTweetsByUserFollowingUser = (tweets: TweetState[], user: UserState): TweetState[] => (
+  tweets.filter(tweet => user.following_users.find(following_user_id => following_user_id == tweet.user.id)) || []
+);
+
 export const checkTweetByUserLikes = (tweet: TweetState, user: UserState): number => (
   user.likes.find(like => like == tweet.id)
 );
