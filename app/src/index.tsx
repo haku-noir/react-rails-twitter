@@ -13,6 +13,7 @@ import { UserListPanel } from 'components/UserListPanel';
 import { UserLoginForm } from 'containers/UserLoginForm';
 import { UserRegisterForm } from 'containers/UserRegisterForm';
 import { UserShow } from 'containers/UserShow';
+import { ErrorAlert } from 'containers/ErrorAlert';
 
 const history :History = createBrowserHistory();
 const store = createStore(history);
@@ -23,6 +24,9 @@ ReactDOM.render(
       <Grid container>
         <Grid container item justify="center">
           <MenuAppBar />
+        </Grid>
+        <Grid container item justify="center">
+          <ErrorAlert />
         </Grid>
         <Grid container item justify="center">
           <Switch>
