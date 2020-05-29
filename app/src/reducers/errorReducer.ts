@@ -9,4 +9,10 @@ const initialState: ErrorState = {
   message: '',
 };
 
-export const errorReducer = reducerWithInitialState(initialState);
+export const errorReducer = reducerWithInitialState(initialState)
+  .case(errorActions.setError, (state: ErrorState, payload: ErrorState): ErrorState => (
+    payload
+  ))
+  .case(errorActions.deleteError, (state: ErrorState): ErrorState => ({
+    message: ''
+  }));
