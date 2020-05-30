@@ -5,6 +5,7 @@ import { UserForm, UserFormStateAsProps, UserFormDispatchAsProps } from 'compone
 import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
+import { errorActions } from 'actions/errorActions';
 
 const mapStateToProps = (rootState: RootState): UserFormStateAsProps => ({
   params: {
@@ -28,6 +29,8 @@ const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
       if(payload !== undefined){
         bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
         .then(() => dispatch(push('/')));
+      }else{
+        dispatch(errorActions.setError('Register failed'))
       }
     });
   }

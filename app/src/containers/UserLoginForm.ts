@@ -6,6 +6,7 @@ import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
 import { tweetsActions } from 'actions/tweetsActions';
+import { errorActions } from 'actions/errorActions';
 
 const mapStateToProps = (rootState: RootState): UserFormStateAsProps => ({
   params: {
@@ -29,6 +30,8 @@ const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
       if(payload !== undefined){
         bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
         .then(() => dispatch(push('/')));
+      }else{
+        dispatch(errorActions.setError('Login failed'))
       }
     })
   }
