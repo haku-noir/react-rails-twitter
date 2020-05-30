@@ -50,6 +50,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
         <CardHeader
           avatar={<UserImage user={user} onClick={() => {}} />}
           title={user.name}
+          subheader={user.email}
         />
         <CardContent>
           <Typography variant="body1" component="p">

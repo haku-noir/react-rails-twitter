@@ -4,6 +4,7 @@ import { usersActions } from 'actions/usersActions';
 export type UserState = {
   id: number;
   name: string;
+  email: string;
   image_name: string;
   profile: string;
   likes?: number[];
