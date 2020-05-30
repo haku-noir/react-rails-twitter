@@ -1,13 +1,13 @@
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from 'store';
-import { UserForm, UserFormStateAsProps, UserFormDispatchAsProps } from 'components/UserForm';
+import { UserRegisterForm as UserRegisterFormComp, UserRegisterFormStateAsProps, UserRegisterFormDispatchAsProps } from 'components/UserRegisterForm';
 import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
 import { errorActions } from 'actions/errorActions';
 
-const mapStateToProps = (rootState: RootState): UserFormStateAsProps => ({
+const mapStateToProps = (rootState: RootState): UserRegisterFormStateAsProps => ({
   params: {
     title: 'Register',
     buttonL: 'Login',
@@ -15,13 +15,13 @@ const mapStateToProps = (rootState: RootState): UserFormStateAsProps => ({
   }
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
+const mapDispatchToProps = (dispatch: Dispatch): UserRegisterFormDispatchAsProps => ({
   clickL: () => dispatch(push('/users/login')),
-  clickR: (user: string, password: string) => {
+  clickR: (user: string, email: string, password: string) => {
     bindActionCreators(thunkToAction(usersActions.addUser.action), dispatch)({
       id: 0,
       name: user,
-      email: '',
+      email: email,
       image_name: 'default_user.jpg',
       profile: '',
       password
@@ -37,4 +37,4 @@ const mapDispatchToProps = (dispatch: Dispatch): UserFormDispatchAsProps => ({
   }
 });
 
-export const UserRegisterForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
+export const UserRegisterForm = connect(mapStateToProps, mapDispatchToProps)(UserRegisterFormComp);
