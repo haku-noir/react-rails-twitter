@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, {only: [:update]}
 
   def index
-    @users = User.select(:id, :name, :image_name, :profile, :created_at, :updated_at).order(created_at: :desc)
+    @users = User.select(:id, :name, :email, :image_name, :profile, :created_at, :updated_at).order(created_at: :desc)
     render json: { users: @users }
   end
 
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(
       name: params[:name],
       password: params[:password],
+      email: params[:email],
       image_name: "default_user.jpg",
       profile: ''
     )
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.select(:id, :name, :image_name, :profile, :created_at, :updated_at).find_by(id: params[:id])
+    @user = User.select(:id, :name, :email, :image_name, :profile, :created_at, :updated_at).find_by(id: params[:id])
   end
 
   def set_user_hash
