@@ -14,6 +14,7 @@ import { UserLoginForm } from 'containers/UserLoginForm';
 import { UserRegisterForm } from 'containers/UserRegisterForm';
 import { UserShow } from 'containers/UserShow';
 import { ErrorAlert } from 'containers/ErrorAlert';
+import { TweetSendButton } from 'containers/TweetSendButton';
 
 const history :History = createBrowserHistory();
 const store = createStore(history);
@@ -38,6 +39,7 @@ ReactDOM.render(
             <Route exact path={'/users/show'} component={UserShow}/>
           </Switch>
         </Grid>
+        <TweetSendButton />
       </Grid>
     </ConnectedRouter>
   </Provider>,

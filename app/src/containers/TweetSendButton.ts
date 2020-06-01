@@ -5,6 +5,7 @@ import { SendButton, SendButtonStateAsProps, SendButtonDispatchAsProps } from 'c
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { tweetsActions } from 'actions/tweetsActions';
 import { errorActions } from 'actions/errorActions';
+import { push } from 'connected-react-router';
 
 const mapStateToProps = (rootState: RootState): SendButtonStateAsProps => ({
   dialogParams: {
@@ -26,7 +27,8 @@ const mapDispatchToProps = (dispatch: Dispatch): SendButtonDispatchAsProps => ({
       bindActionCreators(thunkToAction(tweetsActions.addTweet.action), dispatch)({
         id: 0,
         content: text
-      });
+      })
+      .then(() => dispatch(push('/')));
     }
   }
 });

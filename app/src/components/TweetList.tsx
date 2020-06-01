@@ -5,7 +5,6 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { Tweet } from 'containers/Tweet';
-import { TweetSendButton } from 'containers/TweetSendButton';
 
 export type TweetListStateAsProps = {
   tweets: TweetState[];
@@ -40,7 +39,6 @@ export const TweetList: React.FC<IProps> = (props: IProps) => {
           </ListItem>
         ))}
       </List>
-      <TweetSendButton />
     </div>
   );
 };
