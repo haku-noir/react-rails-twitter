@@ -46,6 +46,10 @@ export const tweetsReducer = reducerWithInitialState(initialState)
     showTweet: payload.result
   }));
 
+export const findTweetsAtHome = (tweets: TweetState[], user: UserState): TweetState[] => (
+  tweets.filter(tweet => tweet.user.id == user.id || user.following_users.find(following_user_id => following_user_id == tweet.user.id))
+);
+
 export const findTweetsByUserId = (tweets: TweetState[], user: UserState): TweetState[] => (
   tweets.filter(tweet => tweet.user.id == user.id)
 );
