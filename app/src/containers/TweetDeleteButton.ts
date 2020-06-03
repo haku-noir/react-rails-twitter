@@ -14,7 +14,7 @@ const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): D
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: {tweet: TweetState}): DeleteButtonDispatchAsProps => ({
   destroy: () => {
     bindActionCreators(thunkToAction(tweetsActions.deleteTweet.action), dispatch)(ownProps.tweet.id)
-    dispatch(push('/'));
+      .then(() => dispatch(push('/')))
   }
 });
 

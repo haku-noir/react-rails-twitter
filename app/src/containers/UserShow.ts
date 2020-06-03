@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch: Dispatch): UserShowDispatchAsProps => ({
   clickFollow: (user: UserState, follower: UserState) => {
     const change = isFollowerByUser(follower, user) ? unfollow : follow;
     change(follower.id, user.id)
-    .then(() => bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)())
-    .then(() => bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(user.id))
+      .then(() => bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)())
+      .then(() => bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(user.id))
   }
 });
 

@@ -26,14 +26,14 @@ const mapDispatchToProps = (dispatch: Dispatch): UserRegisterFormDispatchAsProps
       profile: '',
       password
     })
-    .then((payload) => {
-      if(payload !== undefined){
-        bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
-        .then(() => dispatch(push('/')));
-      }else{
-        dispatch(errorActions.setError('Register failed'))
-      }
-    });
+      .then((payload) => {
+        if(payload !== undefined){
+          bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
+            .then(() => dispatch(push('/')));
+        }else{
+          dispatch(errorActions.setError('Register failed'))
+        }
+      });
   }
 });
 

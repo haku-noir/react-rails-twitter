@@ -26,15 +26,15 @@ const mapDispatchToProps = (dispatch: Dispatch): UserLoginFormDispatchAsProps =>
       profile: '',
       password
     })
-    .then((payload) => {
-      console.log(payload)
-      if(payload !== undefined){
-        bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
-        .then(() => dispatch(push('/')));
-      }else{
-        dispatch(errorActions.setError('Login failed'))
-      }
-    })
+      .then((payload) => {
+        console.log(payload)
+        if(payload !== undefined){
+          bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
+            .then(() => dispatch(push('/')));
+        }else{
+          dispatch(errorActions.setError('Login failed'))
+        }
+      })
   }
 });
 

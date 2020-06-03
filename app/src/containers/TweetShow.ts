@@ -18,14 +18,14 @@ const mapStateToProps = (rootState: RootState): TweetShowStateAsProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): TweetShowDispatchAsProps => ({
   clickUser: (id: number) => {
     bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(id)
-    .then(() => dispatch(push('/users/show')))
+      .then(() => dispatch(push('/users/show')))
   },
   clickLike: (user: UserState, tweet: TweetState) => {
     const change = checkTweetByUserLikes(tweet, user) ? dislike : like;
     change(user.id, tweet.id)
-    .then(() => bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch)())
-    .then(() => bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)())
-    .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id))
+      .then(() => bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch)())
+      .then(() => bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)())
+      .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id))
   }
 });
 

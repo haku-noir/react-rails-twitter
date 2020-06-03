@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: {tweet: TweetState}): 
   edit: (text: string) => {
     const tweet: TweetState = {...ownProps.tweet, content: text};
     bindActionCreators(thunkToAction(tweetsActions.updateTweet.action), dispatch)(tweet)
-    .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id));
+      .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id));
   }
 });
 

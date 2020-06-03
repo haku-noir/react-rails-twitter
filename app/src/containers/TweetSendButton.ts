@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: Dispatch): SendButtonDispatchAsProps => ({
         id: 0,
         content: text
       })
-      .then(() => dispatch(push('/')));
+        .then(() => dispatch(push('/')));
     }
   }
 });
