@@ -16,16 +16,18 @@ const mapStateToProps = (rootState: RootState, ownProps: {user: UserState}): Use
     default2: ownProps.user.profile,
     button: 'OK',
   },
-  isVisible: rootState.users.loginUser.loggedin && (rootState.users.loginUser.user.id == ownProps.user.id)
+  isVisible: rootState.users.loginUser.loggedin && (rootState.users.loginUser.user.id == ownProps.user.id),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: {user: UserState}): UserEditButtonDispatchAsProps => ({
   edit: (text: string, file: File, profile: string) => {
-    const user: ImageUserState = {...ownProps.user, name: text, image: file, profile};
+    const user: ImageUserState = {
+      ...ownProps.user, name: text, image: file, profile,
+    };
     bindActionCreators(thunkToAction(usersActions.updateUser.action), dispatch)(user)
       .then(() => bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch)())
       .then(() => bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(user.id));
-  }
+  },
 });
 
 export const UserEditButton = connect(mapStateToProps, mapDispatchToProps)(UserEditButtonComp);

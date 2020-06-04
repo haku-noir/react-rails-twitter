@@ -31,51 +31,51 @@ export type UsersState = {
 };
 
 const initialState: UsersState = {
-  loginUser: {loggedin: false},
-  showUser: null
+  loginUser: { loggedin: false },
+  showUser: null,
 };
 
 export const usersReducer = reducerWithInitialState(initialState)
   .case(usersActions.login.async.done, (state: UsersState, payload): UsersState => {
-    if(payload.result === undefined) return state;
+    if (payload.result === undefined) return state;
     return {
       ...state,
       loginUser: {
         user: payload.result,
-        loggedin: true
-      }
+        loggedin: true,
+      },
     };
   })
   .case(usersActions.logout.async.done, (state: UsersState): UsersState => ({
     ...state,
     loginUser: {
-      loggedin: false
-    }
+      loggedin: false,
+    },
   }))
   .case(usersActions.addUser.async.done, (state: UsersState, payload): UsersState => ({
     ...state,
     loginUser: {
       user: payload.result,
-      loggedin: true
-    }
+      loggedin: true,
+    },
   }))
   .case(usersActions.setShowUser.async.done, (state: UsersState, payload): UsersState => ({
     ...state,
-    showUser: payload.result
+    showUser: payload.result,
   }))
   .case(usersActions.setSessionUser.async.done, (state: UsersState, payload): UsersState => ({
     ...state,
-    loginUser: payload.result
+    loginUser: payload.result,
   }));
 
 export const findFollower = (users: UserState[], user: UserState): UserState[] => (
-  users.filter(follower => user.followers.find(follower_id => follower_id == follower.id))
+  users.filter((follower) => user.followers.find((follower_id) => follower_id == follower.id))
 );
 
 export const findFollowingUser = (users: UserState[], user: UserState): UserState[] => (
-  users.filter(following_user => user.following_users.find(following_user_id => following_user_id == following_user.id))
+  users.filter((following_user) => user.following_users.find((following_user_id) => following_user_id == following_user.id))
 );
 
 export const isFollowerByUser = (follower: UserState, user: UserState): number => (
-  follower.following_users.find(following_user => following_user == user.id)
+  follower.following_users.find((following_user) => following_user == user.id)
 );

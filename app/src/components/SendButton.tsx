@@ -15,15 +15,13 @@ export type SendButtonDispatchAsProps = {
 
 type IProps = SendButtonStateAsProps & SendButtonDispatchAsProps;
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    fab: {
-      position: 'fixed',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+}));
 
 export const SendButton: React.FC<IProps> = (props: IProps) => {
   const { isVisible, dialogParams, send } = props;
@@ -31,7 +29,7 @@ export const SendButton: React.FC<IProps> = (props: IProps) => {
   const classes = useStyles();
 
   return (
-    <div style={{display: isVisible ? "inline" : "none"}}>
+    <div style={{ display: isVisible ? 'inline' : 'none' }}>
       <Fab color="primary" aria-label="send" className={classes.fab} onClick={() => setOpen(true)}>
         <SendIcon />
       </Fab>

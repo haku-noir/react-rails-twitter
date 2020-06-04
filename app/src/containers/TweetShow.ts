@@ -12,21 +12,21 @@ import { tweetsActions } from 'actions/tweetsActions';
 
 const mapStateToProps = (rootState: RootState): TweetShowStateAsProps => ({
   tweet: rootState.tweets.showTweet,
-  loginUser: rootState.users.loginUser
+  loginUser: rootState.users.loginUser,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): TweetShowDispatchAsProps => ({
   clickUser: (id: number) => {
     bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(id)
-      .then(() => dispatch(push('/users/show')))
+      .then(() => dispatch(push('/users/show')));
   },
   clickLike: (user: UserState, tweet: TweetState) => {
     const change = checkTweetByUserLikes(tweet, user) ? dislike : like;
     change(user.id, tweet.id)
       .then(() => bindActionCreators(thunkToAction(tweetsActions.fetchTweets.action), dispatch)())
       .then(() => bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)())
-      .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id))
-  }
+      .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id));
+  },
 });
 
 export const TweetShow = connect(mapStateToProps, mapDispatchToProps)(TweetShowComp);

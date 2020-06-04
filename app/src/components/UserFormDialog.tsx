@@ -23,7 +23,9 @@ type IProps = {
 };
 
 export const UserFormDialog: React.FC<IProps> = (props: IProps) => {
-  const { send, open, setOpen, params } = props;
+  const {
+    send, open, setOpen, params,
+  } = props;
   const [text, updateText] = React.useState(params.default1);
   const [file, updateFile] = React.useState(null);
   const [profile, updateProfile] = React.useState(params.default2);
@@ -49,7 +51,7 @@ export const UserFormDialog: React.FC<IProps> = (props: IProps) => {
           <input
             type="file"
             accept="image/*"
-            style={{ display: "none" }}
+            style={{ display: 'none' }}
             onChange={(event) => updateFile(event.target.files.item(0))}
           />
         </Button>
@@ -65,7 +67,7 @@ export const UserFormDialog: React.FC<IProps> = (props: IProps) => {
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={() => {send(text, file, profile); handleClose();}} color="primary">
+        <Button onClick={() => { send(text, file, profile); handleClose(); }} color="primary">
           {params.button}
         </Button>
       </DialogActions>

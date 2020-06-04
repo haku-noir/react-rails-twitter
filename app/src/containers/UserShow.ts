@@ -9,7 +9,7 @@ import { usersActions } from 'actions/usersActions';
 
 const mapStateToProps = (rootState: RootState): UserShowStateAsProps => ({
   user: rootState.users.showUser,
-  loginUser: rootState.users.loginUser
+  loginUser: rootState.users.loginUser,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): UserShowDispatchAsProps => ({
@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch: Dispatch): UserShowDispatchAsProps => ({
     const change = isFollowerByUser(follower, user) ? unfollow : follow;
     change(follower.id, user.id)
       .then(() => bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)())
-      .then(() => bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(user.id))
-  }
+      .then(() => bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(user.id));
+  },
 });
 
 export const UserShow = connect(mapStateToProps, mapDispatchToProps)(UserShowComp);

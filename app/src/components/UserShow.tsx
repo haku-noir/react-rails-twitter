@@ -8,11 +8,11 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import { UserImage } from './UserImage';
 import { UserState, LoginUserState, isFollowerByUser } from 'reducers/usersReducer';
 import { UserEditButton } from 'containers/UserEditButton';
-import { UserTabs } from './UserTabs';
 import { blue, common } from '@material-ui/core/colors';
+import { UserTabs } from './UserTabs';
+import { UserImage } from './UserImage';
 
 export type UserShowStateAsProps = {
   user: UserState;
@@ -25,13 +25,11 @@ export type UserShowDispatchAsProps = {
 
 type IProps = UserShowStateAsProps & UserShowDispatchAsProps;
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: size.width,
-    },
-  }),
-);
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    width: size.width,
+  },
+}));
 
 export const UserShow: React.FC<IProps> = (props: IProps) => {
   const { user, loginUser, clickFollow } = props;
@@ -41,7 +39,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
     title: 'Edit User',
     label: 'Name',
     button: 'OK',
-    default: user.name
+    default: user.name,
   };
 
   return (
@@ -66,7 +64,7 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
                   size="small"
                   onClick={() => clickFollow(user, loginUser.user)}
                   color="inherit"
-                  style={{backgroundColor: blue[500]}}
+                  style={{ backgroundColor: blue[500] }}
                 >
                   Following
                 </Button>
@@ -81,8 +79,8 @@ export const UserShow: React.FC<IProps> = (props: IProps) => {
                 </Button>
               )}
             </div>
-          ) : (<div></div>)}
-          <div style={{marginLeft: 'auto'}}>
+          ) : (<div />)}
+          <div style={{ marginLeft: 'auto' }}>
             <UserEditButton user={user} />
           </div>
         </CardActions>

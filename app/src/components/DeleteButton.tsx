@@ -16,7 +16,7 @@ export const DeleteButton: React.FC<IProps> = (props: IProps) => {
   const { isVisible, destroy } = props;
 
   return (
-    <div  style={{display: isVisible ? "inline" : "none"}}>
+    <div style={{ display: isVisible ? 'inline' : 'none' }}>
       <IconButton aria-label="destroy" color="secondary" onClick={() => destroy()}>
         <DeleteIcon />
       </IconButton>

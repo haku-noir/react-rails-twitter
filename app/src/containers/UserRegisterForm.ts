@@ -11,8 +11,8 @@ const mapStateToProps = (rootState: RootState): UserRegisterFormStateAsProps => 
   params: {
     title: 'Register',
     buttonL: 'Login',
-    buttonR: 'Register'
-  }
+    buttonR: 'Register',
+  },
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): UserRegisterFormDispatchAsProps => ({
@@ -21,20 +21,20 @@ const mapDispatchToProps = (dispatch: Dispatch): UserRegisterFormDispatchAsProps
     bindActionCreators(thunkToAction(usersActions.addUser.action), dispatch)({
       id: 0,
       name: user,
-      email: email,
+      email,
       image_name: 'default_user.jpg',
       profile: '',
-      password
+      password,
     })
       .then((payload) => {
-        if(payload !== undefined){
+        if (payload !== undefined) {
           bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
             .then(() => dispatch(push('/')));
-        }else{
-          dispatch(errorActions.setError('Register failed'))
+        } else {
+          dispatch(errorActions.setError('Register failed'));
         }
       });
-  }
+  },
 });
 
 export const UserRegisterForm = connect(mapStateToProps, mapDispatchToProps)(UserRegisterFormComp);

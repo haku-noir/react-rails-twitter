@@ -14,9 +14,9 @@ const initialState: ErrorState = {
 export const errorReducer = reducerWithInitialState(initialState)
   .case(errorActions.setError, (state: ErrorState, payload: string): ErrorState => ({
     message: payload,
-    isError: true
+    isError: true,
   }))
   .case(errorActions.deleteError, (state: ErrorState): ErrorState => ({
     message: '',
-    isError: false
+    isError: false,
   }));

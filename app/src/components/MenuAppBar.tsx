@@ -11,19 +11,17 @@ import Button from '@material-ui/core/Button';
 import { LoginUserState } from 'reducers/usersReducer';
 import { UserImage } from './UserImage';
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    title: {
-      flexGrow: 1,
-    },
-    button: {
-      marginRight: 10,
-    }
-  }),
-);
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+  button: {
+    marginRight: 10,
+  },
+}));
 
 export type MenuAppBarStateAsProps = LoginUserState;
 
@@ -39,14 +37,16 @@ export type MenuAppBarDispatchAsProps = {
 type IProps = MenuAppBarStateAsProps & MenuAppBarDispatchAsProps;
 
 export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
-  const { user, loggedin, clickHome, clickUserList, clickLogin, clickLogout, clickProfile, repeat } = props;
+  const {
+    user, loggedin, clickHome, clickUserList, clickLogin, clickLogout, clickProfile, repeat,
+  } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const classes = useStyles();
 
   React.useEffect(() => {
     const timeId = setTimeout(() => repeat(), 5000);
-    return () => {clearTimeout(timeId)}
+    return () => { clearTimeout(timeId); };
   });
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -101,8 +101,8 @@ export const MenuAppBar: React.FC<IProps> = (props: IProps) => {
                     <b>{user.name}</b>
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => {clickProfile(user.id); handleClose();}}>Profile</MenuItem>
-                <MenuItem onClick={() => {clickLogout(); handleClose();}}>Logout</MenuItem>
+                <MenuItem onClick={() => { clickProfile(user.id); handleClose(); }}>Profile</MenuItem>
+                <MenuItem onClick={() => { clickLogout(); handleClose(); }}>Logout</MenuItem>
               </Menu>
             </div>
           ) : (

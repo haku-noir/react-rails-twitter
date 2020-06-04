@@ -9,18 +9,18 @@ import { tweetsActions } from 'actions/tweetsActions';
 import { usersActions } from 'actions/usersActions';
 
 const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): TweetStateAsProps => ({
-  tweet: ownProps.tweet
+  tweet: ownProps.tweet,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): TweetDispatchAsProps => ({
   clickCard: (id: number) => {
     bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(id)
-      .then(() => dispatch(push('/tweets/show')))
+      .then(() => dispatch(push('/tweets/show')));
   },
   clickUser: (id: number) => {
     bindActionCreators(thunkToAction(usersActions.setShowUser.action), dispatch)(id)
-      .then(() => dispatch(push('/users/show')))
-  }
+      .then(() => dispatch(push('/users/show')));
+  },
 });
 
 export const Tweet = connect(mapStateToProps, mapDispatchToProps)(TweetComp);

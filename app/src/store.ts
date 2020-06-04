@@ -22,7 +22,7 @@ export const createStore = (history: History) => {
     router: connectRouter(history),
     tweets: tweetsReducer,
     users: usersReducer,
-    error: errorReducer
+    error: errorReducer,
   });
 
   const thunk: ThunkMiddleware<RootState, AnyAction> = thunkMiddleware;
@@ -33,8 +33,8 @@ export const createStore = (history: History) => {
       applyMiddleware(
         routerMiddleware(history),
         logger,
-        thunk
+        thunk,
       ),
     ),
   );
-}
+};

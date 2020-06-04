@@ -12,25 +12,25 @@ const mapStateToProps = (rootState: RootState): SendButtonStateAsProps => ({
     title: 'Send Tweet',
     label: 'Tweet',
     button: 'Send',
-    default: ''
+    default: '',
   },
-  isVisible: rootState.users.loginUser.loggedin
+  isVisible: rootState.users.loginUser.loggedin,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): SendButtonDispatchAsProps => ({
   send: (text: string) => {
-    if(!text){
-      dispatch(errorActions.setError('Tweet is empty'))
-    }else if(text.length > 140){
-      dispatch(errorActions.setError('Tweet is over 140 characters'))
-    }else{
+    if (!text) {
+      dispatch(errorActions.setError('Tweet is empty'));
+    } else if (text.length > 140) {
+      dispatch(errorActions.setError('Tweet is over 140 characters'));
+    } else {
       bindActionCreators(thunkToAction(tweetsActions.addTweet.action), dispatch)({
         id: 0,
-        content: text
+        content: text,
       })
         .then(() => dispatch(push('/')));
     }
-  }
+  },
 });
 
 export const TweetSendButton = connect(mapStateToProps, mapDispatchToProps)(SendButton);

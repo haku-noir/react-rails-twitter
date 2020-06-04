@@ -3,19 +3,17 @@ import { size } from 'size';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import { UserList } from './UserList';
 import { fetchUsers } from 'clients/users';
+import { UserList } from './UserList';
 
 export type UserListPanelProps = {};
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: size.width,
-      marginBottom: 5,
-    },
-  }),
-);
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    width: size.width,
+    marginBottom: 5,
+  },
+}));
 
 export const UserListPanel: React.FC<UserListPanelProps> = (props: UserListPanelProps) => {
   const classes = useStyles();
@@ -26,7 +24,7 @@ export const UserListPanel: React.FC<UserListPanelProps> = (props: UserListPanel
       .then((res) => res.json())
       .then((res) => {
         setUsers(res.users);
-      })
+      });
   }, []);
 
   return (

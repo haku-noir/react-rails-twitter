@@ -19,7 +19,7 @@ export const EditButton: React.FC<IProps> = (props: IProps) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div style={{display: isVisible ? "inline" : "none"}}>
+    <div style={{ display: isVisible ? 'inline' : 'none' }}>
       <IconButton aria-label="edit" color="primary" onClick={() => setOpen(true)}>
         <EditIcon />
       </IconButton>

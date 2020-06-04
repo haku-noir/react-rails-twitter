@@ -5,13 +5,13 @@ import { TweetList as TweetListComp, TweetListStateAsProps, TweetListDispatchAsP
 import { findTweetsAtHome } from 'reducers/tweetsReducer';
 
 const mapStateToProps = (rootState: RootState): TweetListStateAsProps => {
-  const tweets = rootState.tweets.tweets;
-  const loginUser = rootState.users.loginUser;
+  const { tweets } = rootState.tweets;
+  const { loginUser } = rootState.users;
 
   return {
-    tweets: loginUser.loggedin ?
-              findTweetsAtHome(tweets, loginUser.user) :
-              tweets
+    tweets: loginUser.loggedin
+      ? findTweetsAtHome(tweets, loginUser.user)
+      : tweets,
   };
 };
 

@@ -4,10 +4,10 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
-import { UserImage } from './UserImage';
 import { UserState, LoginUserState, isFollowerByUser } from 'reducers/usersReducer';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { blue, common } from '@material-ui/core/colors';
+import { UserImage } from './UserImage';
 
 export type UserStateAsProps = {
   user: UserState;
@@ -21,16 +21,16 @@ export type UserDispatchAsProps = {
 
 type IProps = UserStateAsProps & UserDispatchAsProps;
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: size.width,
-    },
-  }),
-);
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    width: size.width,
+  },
+}));
 
 export const User: React.FC<IProps> = (props: IProps) => {
-  const { user, loginUser, clickUser, clickFollow } = props;
+  const {
+    user, loginUser, clickUser, clickFollow,
+  } = props;
   const classes = useStyles();
 
   return (
@@ -39,23 +39,23 @@ export const User: React.FC<IProps> = (props: IProps) => {
         avatar={<UserImage user={user} onClick={() => {}} />}
         title={user.name}
         action={loginUser.loggedin ? (
-            isFollowerByUser(loginUser.user, user) ? (
-              <IconButton
-                onClick={() => clickFollow(user, loginUser.user)}
-                color="inherit"
-                style={{color: common.white, backgroundColor: blue[500]}}
-              >
-                <PersonAddIcon />
-              </IconButton>
-            ) : (
-              <IconButton
-                onClick={() => clickFollow(user, loginUser.user)}
-                color="inherit"
-              >
-                <PersonAddIcon />
-              </IconButton>
-            )
-        ) : (<div></div>)}
+          isFollowerByUser(loginUser.user, user) ? (
+            <IconButton
+              onClick={() => clickFollow(user, loginUser.user)}
+              color="inherit"
+              style={{ color: common.white, backgroundColor: blue[500] }}
+            >
+              <PersonAddIcon />
+            </IconButton>
+          ) : (
+            <IconButton
+              onClick={() => clickFollow(user, loginUser.user)}
+              color="inherit"
+            >
+              <PersonAddIcon />
+            </IconButton>
+          )
+        ) : (<div />)}
       />
     </Card>
   );

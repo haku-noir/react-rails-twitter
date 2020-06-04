@@ -10,17 +10,15 @@ type IProps = {
   users: UserState[];
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: size.width,
-      backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-      display: 'inline',
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  root: {
+    width: size.width,
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: 'inline',
+  },
+}));
 
 export const UserList: React.FC<IProps> = (props: IProps) => {
   const { users } = props;
@@ -29,7 +27,7 @@ export const UserList: React.FC<IProps> = (props: IProps) => {
   return (
     <div className={classes.root}>
       <List>
-        {users.map(user => (
+        {users.map((user) => (
           <ListItem key={user.id} alignItems="flex-start">
             <User user={user} />
           </ListItem>

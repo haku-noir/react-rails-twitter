@@ -21,7 +21,9 @@ type IProps = {
 };
 
 export const FormDialog: React.FC<IProps> = (props: IProps) => {
-  const { send, open, setOpen, params } = props;
+  const {
+    send, open, setOpen, params,
+  } = props;
   const [text, updateText] = React.useState(params.default);
 
   const handleClose = () => {
@@ -45,7 +47,7 @@ export const FormDialog: React.FC<IProps> = (props: IProps) => {
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={() => {send(text); handleClose();}} color="primary">
+        <Button onClick={() => { send(text); handleClose(); }} color="primary">
           {params.button}
         </Button>
       </DialogActions>

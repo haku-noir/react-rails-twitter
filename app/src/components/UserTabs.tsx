@@ -18,7 +18,9 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const {
+    children, value, index, ...other
+  } = props;
 
   return (
     <div
@@ -75,7 +77,7 @@ export const UserTabs = (props: IProps) => {
       .then((res) => res.json())
       .then((res) => {
         setUsers(res.users);
-      })
+      });
   }, [user]);
 
   return (
@@ -97,7 +99,7 @@ export const UserTabs = (props: IProps) => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        <UserTweetList user ={user} />
+        <UserTweetList user={user} />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <UserLikeList user={user} />
@@ -110,4 +112,4 @@ export const UserTabs = (props: IProps) => {
       </TabPanel>
     </div>
   );
-}
+};

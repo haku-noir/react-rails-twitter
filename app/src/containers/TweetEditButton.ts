@@ -11,17 +11,17 @@ const mapStateToProps = (rootState: RootState, ownProps: {tweet: TweetState}): E
     title: 'Edit Tweet',
     label: 'Tweet',
     button: 'OK',
-    default: ownProps.tweet.content
+    default: ownProps.tweet.content,
   },
-  isVisible: rootState.users.loginUser.loggedin && (rootState.users.loginUser.user.id == ownProps.tweet.user.id)
+  isVisible: rootState.users.loginUser.loggedin && (rootState.users.loginUser.user.id == ownProps.tweet.user.id),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: {tweet: TweetState}): EditButtonDispatchAsProps => ({
   edit: (text: string) => {
-    const tweet: TweetState = {...ownProps.tweet, content: text};
+    const tweet: TweetState = { ...ownProps.tweet, content: text };
     bindActionCreators(thunkToAction(tweetsActions.updateTweet.action), dispatch)(tweet)
       .then(() => bindActionCreators(thunkToAction(tweetsActions.setShowTweet.action), dispatch)(tweet.id));
-  }
+  },
 });
 
 export const TweetEditButton = connect(mapStateToProps, mapDispatchToProps)(EditButton);

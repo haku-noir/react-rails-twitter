@@ -11,8 +11,8 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { TweetEditButton } from 'containers/TweetEditButton';
 import { TweetDeleteButton } from 'containers/TweetDeleteButton';
-import { UserImage } from './UserImage';
 import { UserState, LoginUserState } from 'reducers/usersReducer';
+import { UserImage } from './UserImage';
 
 export type TweetShowStateAsProps = {
   tweet: TweetState,
@@ -26,32 +26,32 @@ export type TweetShowDispatchAsProps = {
 
 type IProps = TweetShowStateAsProps & TweetShowDispatchAsProps;
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: size.width,
-    },
-  }),
-);
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    width: size.width,
+  },
+}));
 
 export const TweetShow: React.FC<IProps> = (props: IProps) => {
-  const { tweet, loginUser, clickUser, clickLike } = props;
+  const {
+    tweet, loginUser, clickUser, clickLike,
+  } = props;
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
+        avatar={(
           <UserImage
             user={tweet.user}
-            onClick={(event: React.MouseEvent) => {clickUser(tweet.user.id); event.stopPropagation();}}
+            onClick={(event: React.MouseEvent) => { clickUser(tweet.user.id); event.stopPropagation(); }}
           />
-        }
-        title={
+        )}
+        title={(
           <Typography component="a" onClick={() => clickUser(tweet.user.id)}>
             {tweet.user.name}
           </Typography>
-        }
+        )}
         subheader={tweet.time}
       />
       <CardContent>
@@ -63,15 +63,14 @@ export const TweetShow: React.FC<IProps> = (props: IProps) => {
         {loginUser.loggedin ? (
           <div>
             <IconButton onClick={() => clickLike(loginUser.user, tweet)}>
-              <FavoriteIcon color={checkTweetByUserLikes(tweet, loginUser.user) ? "secondary" : "inherit"}/>
+              <FavoriteIcon color={checkTweetByUserLikes(tweet, loginUser.user) ? 'secondary' : 'inherit'} />
             </IconButton>
             <Typography component="span">
               {tweet.likes_count}
             </Typography>
           </div>
-          ) : (<div></div>)
-        }
-        <div style={{marginLeft: 'auto'}}>
+        ) : (<div />)}
+        <div style={{ marginLeft: 'auto' }}>
           <TweetEditButton tweet={tweet} />
           <TweetDeleteButton tweet={tweet} />
         </div>

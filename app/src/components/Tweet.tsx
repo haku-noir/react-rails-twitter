@@ -17,13 +17,11 @@ export type TweetDispatchAsProps = {
 
 type IProps = TweetStateAsProps & TweetDispatchAsProps;
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: '100%',
-    },
-  }),
-);
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    width: '100%',
+  },
+}));
 
 export const Tweet: React.FC<IProps> = (props: IProps) => {
   const { tweet, clickCard, clickUser } = props;
@@ -32,22 +30,22 @@ export const Tweet: React.FC<IProps> = (props: IProps) => {
   return (
     <Card className={classes.root} onClick={() => clickCard(tweet.id)}>
       <CardHeader
-        avatar={
+        avatar={(
           <UserImage
             user={tweet.user}
-            onClick={(event: React.MouseEvent) => {clickUser(tweet.user.id); event.stopPropagation();}}
+            onClick={(event: React.MouseEvent) => { clickUser(tweet.user.id); event.stopPropagation(); }}
           />
-        }
-        title={
-          <Typography component="a" onClick={(event: React.MouseEvent) => {clickUser(tweet.user.id); event.stopPropagation();}}>
+        )}
+        title={(
+          <Typography component="a" onClick={(event: React.MouseEvent) => { clickUser(tweet.user.id); event.stopPropagation(); }}>
             {tweet.user.name}
           </Typography>
-        }
-        subheader={
+        )}
+        subheader={(
           <Typography variant="body1" component="p">
             {tweet.content}
           </Typography>
-        }
+        )}
       />
     </Card>
   );

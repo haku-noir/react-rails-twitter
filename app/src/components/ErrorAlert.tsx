@@ -17,13 +17,11 @@ export type ErrorAlertDispatchAsProps = {
 
 type IProps = ErrorAlertStateAsProps & ErrorAlertDispatchAsProps;
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: size.width * 1.2,
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  root: {
+    width: size.width * 1.2,
+  },
+}));
 
 export const ErrorAlert: React.FC<IProps> = (props: IProps) => {
   const { error, clickClose } = props;
@@ -33,7 +31,7 @@ export const ErrorAlert: React.FC<IProps> = (props: IProps) => {
     <Collapse className={classes.root} in={error.isError}>
       <Alert
         severity="error"
-        action={
+        action={(
           <IconButton
             aria-label="close"
             color="inherit"
@@ -42,7 +40,7 @@ export const ErrorAlert: React.FC<IProps> = (props: IProps) => {
           >
             <CloseIcon fontSize="inherit" />
           </IconButton>
-        }
+        )}
       >
         {error.message}
       </Alert>

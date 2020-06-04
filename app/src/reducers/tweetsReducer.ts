@@ -17,51 +17,51 @@ export type TweetsState = {
 
 const initialState: TweetsState = {
   tweets: [],
-  showTweet: null
+  showTweet: null,
 };
 
 export const tweetsReducer = reducerWithInitialState(initialState)
-  .case(tweetsActions.updateTweets, (state: TweetsState, payload: TweetsState["tweets"]): TweetsState => ({
+  .case(tweetsActions.updateTweets, (state: TweetsState, payload: TweetsState['tweets']): TweetsState => ({
     ...state,
     tweets: payload,
   }))
   .case(tweetsActions.fetchTweets.async.done, (state: TweetsState, payload): TweetsState => ({
     ...state,
-    tweets: payload.result
+    tweets: payload.result,
   }))
   .case(tweetsActions.addTweet.async.done, (state: TweetsState, payload): TweetsState => ({
     ...state,
-    tweets: payload.result
+    tweets: payload.result,
   }))
   .case(tweetsActions.deleteTweet.async.done, (state: TweetsState, payload): TweetsState => ({
     ...state,
-    tweets: payload.result
+    tweets: payload.result,
   }))
   .case(tweetsActions.updateTweet.async.done, (state: TweetsState, payload): TweetsState => ({
     ...state,
-    tweets: payload.result
+    tweets: payload.result,
   }))
   .case(tweetsActions.setShowTweet.async.done, (state: TweetsState, payload): TweetsState => ({
     ...state,
-    showTweet: payload.result
+    showTweet: payload.result,
   }));
 
 export const findTweetsAtHome = (tweets: TweetState[], user: UserState): TweetState[] => (
-  tweets.filter(tweet => tweet.user.id == user.id || user.following_users.find(following_user_id => following_user_id == tweet.user.id))
+  tweets.filter((tweet) => tweet.user.id == user.id || user.following_users.find((following_user_id) => following_user_id == tweet.user.id))
 );
 
 export const findTweetsByUserId = (tweets: TweetState[], user: UserState): TweetState[] => (
-  tweets.filter(tweet => tweet.user.id == user.id)
+  tweets.filter((tweet) => tweet.user.id == user.id)
 );
 
 export const findTweetsByUserLikes = (tweets: TweetState[], user: UserState): TweetState[] => (
-  tweets.filter(tweet => user.likes.find(like => like == tweet.id))
+  tweets.filter((tweet) => user.likes.find((like) => like == tweet.id))
 );
 
 export const findTweetsByUserFollowingUser = (tweets: TweetState[], user: UserState): TweetState[] => (
-  tweets.filter(tweet => user.following_users.find(following_user_id => following_user_id == tweet.user.id)) || []
+  tweets.filter((tweet) => user.following_users.find((following_user_id) => following_user_id == tweet.user.id)) || []
 );
 
 export const checkTweetByUserLikes = (tweet: TweetState, user: UserState): number => (
-  user.likes.find(like => like == tweet.id)
+  user.likes.find((like) => like == tweet.id)
 );

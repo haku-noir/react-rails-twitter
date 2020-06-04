@@ -1,79 +1,79 @@
-import { PassUserState, ImageUserState } from "reducers/usersReducer";
+import { PassUserState, ImageUserState } from 'reducers/usersReducer';
 
 const baseURL = 'http://localhost';
 
 export const fetchUsers = () => fetch(`${baseURL}/users`, {
-  method: "GET",
+  method: 'GET',
   mode: 'cors',
   credentials: 'include',
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
 });
 
 export const addUser = (user: PassUserState) => fetch(`${baseURL}/users`, {
-  method: "POST",
+  method: 'POST',
   mode: 'cors',
   credentials: 'include',
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
   },
-  body: JSON.stringify(user)
+  body: JSON.stringify(user),
 });
 
 export const login = (user: PassUserState) => fetch(`${baseURL}/login`, {
-  method: "POST",
+  method: 'POST',
   mode: 'cors',
   credentials: 'include',
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
   },
-  body: JSON.stringify(user)
+  body: JSON.stringify(user),
 });
 
 export const logout = () => fetch(`${baseURL}/logout`, {
-  method: "POST",
+  method: 'POST',
   mode: 'cors',
   credentials: 'include',
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
   },
 });
 
 export const getUser = (id: number) => fetch(`${baseURL}/users/${id}`, {
-  method: "GET",
+  method: 'GET',
   mode: 'cors',
   credentials: 'include',
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
 });
 
 export const updateUser = (user: ImageUserState) => {
   const formData = new FormData();
   formData.append('name', user.name);
-  if(user.image) formData.append('image', user.image);
+  if (user.image) formData.append('image', user.image);
   formData.append('profile', user.profile);
 
   return fetch(`${baseURL}/users/${user.id}`, {
-    method: "PUT",
+    method: 'PUT',
     mode: 'cors',
     credentials: 'include',
-    body: formData
+    body: formData,
   });
 };
 
 export const getSessionUser = () => fetch(`${baseURL}/session`, {
-  method: "GET",
+  method: 'GET',
   mode: 'cors',
   credentials: 'include',
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
 });

@@ -1,3 +1,3 @@
 export const size = {
-  width: 500
+  width: 500,
 };

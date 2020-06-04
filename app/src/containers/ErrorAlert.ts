@@ -5,11 +5,11 @@ import { ErrorAlert as ErrorAlertComp, ErrorAlertStateAsProps, ErrorAlertDispatc
 import { errorActions } from 'actions/errorActions';
 
 const mapStateToProps = (rootState: RootState): ErrorAlertStateAsProps => ({
-  error: rootState.error
+  error: rootState.error,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): ErrorAlertDispatchAsProps => ({
-  clickClose: () => dispatch(errorActions.deleteError)
+  clickClose: () => dispatch(errorActions.deleteError),
 });
 
 export const ErrorAlert = connect(mapStateToProps, mapDispatchToProps)(ErrorAlertComp);

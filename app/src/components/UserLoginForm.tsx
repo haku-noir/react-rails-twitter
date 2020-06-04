@@ -25,17 +25,15 @@ export type UserLoginFormDispatchAsProps = {
 
 type IProps = UserLoginFormStateAsProps & UserLoginFormDispatchAsProps;
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: size.width,
-    },
-    field: {
-      width: '100%',
-      marginTop: 10,
-    }
-  }),
-);
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    width: size.width,
+  },
+  field: {
+    width: '100%',
+    marginTop: 10,
+  },
+}));
 
 export const UserLoginForm: React.FC<IProps> = (props: IProps) => {
   const { params, clickL, clickR } = props;
@@ -54,19 +52,19 @@ export const UserLoginForm: React.FC<IProps> = (props: IProps) => {
           onChange={(event) => updateEmail(String(event.target.value))}
         />
         <TextField
-            className={classes.field}
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            variant="outlined"
-            onChange={(event) => updatePassword(String(event.target.value))}
-          />
+          className={classes.field}
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          variant="outlined"
+          onChange={(event) => updatePassword(String(event.target.value))}
+        />
       </CardContent>
       <CardActions disableSpacing>
         <Button color="secondary" onClick={() => clickL()}>
           {params.buttonL}
         </Button>
-        <div style={{marginLeft: 'auto'}}>
+        <div style={{ marginLeft: 'auto' }}>
           <Button color="primary" onClick={() => clickR(email, password)}>
             {params.buttonR}
           </Button>
