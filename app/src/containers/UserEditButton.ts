@@ -16,7 +16,7 @@ const mapStateToProps = (rootState: RootState, ownProps: {user: UserState}): Use
     default2: ownProps.user.profile,
     button: 'OK',
   },
-  isVisible: rootState.users.loginUser.loggedin && (rootState.users.loginUser.user.id == ownProps.user.id),
+  isVisible: rootState.users.loginUser.loggedin && (rootState.users.loginUser.user.id === ownProps.user.id),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: {user: UserState}): UserEditButtonDispatchAsProps => ({

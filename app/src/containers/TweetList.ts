@@ -1,4 +1,3 @@
-import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from 'store';
 import { TweetList as TweetListComp, TweetListStateAsProps, TweetListDispatchAsProps } from 'components/TweetList';
@@ -15,6 +14,6 @@ const mapStateToProps = (rootState: RootState): TweetListStateAsProps => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): TweetListDispatchAsProps => ({});
+const mapDispatchToProps = (): TweetListDispatchAsProps => ({});
 
 export const TweetList = connect(mapStateToProps, mapDispatchToProps)(TweetListComp);

@@ -1,13 +1,12 @@
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { RootState } from 'store';
 import { UserLoginForm as UserLoginFormComp, UserLoginFormStateAsProps, UserLoginFormDispatchAsProps } from 'components/UserLoginForm';
 import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
 import { errorActions } from 'actions/errorActions';
 
-const mapStateToProps = (rootState: RootState): UserLoginFormStateAsProps => ({
+const mapStateToProps = (): UserLoginFormStateAsProps => ({
   params: {
     title: 'Login',
     buttonL: 'Register',
@@ -27,7 +26,6 @@ const mapDispatchToProps = (dispatch: Dispatch): UserLoginFormDispatchAsProps =>
       password,
     })
       .then((payload) => {
-        console.log(payload);
         if (payload !== undefined) {
           bindActionCreators(thunkToAction(usersActions.setSessionUser.action), dispatch)()
             .then(() => dispatch(push('/')));

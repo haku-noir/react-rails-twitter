@@ -1,13 +1,12 @@
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { RootState } from 'store';
 import { UserRegisterForm as UserRegisterFormComp, UserRegisterFormStateAsProps, UserRegisterFormDispatchAsProps } from 'components/UserRegisterForm';
 import { push } from 'connected-react-router';
 import { thunkToAction } from 'typescript-fsa-redux-thunk';
 import { usersActions } from 'actions/usersActions';
 import { errorActions } from 'actions/errorActions';
 
-const mapStateToProps = (rootState: RootState): UserRegisterFormStateAsProps => ({
+const mapStateToProps = (): UserRegisterFormStateAsProps => ({
   params: {
     title: 'Register',
     buttonL: 'Login',

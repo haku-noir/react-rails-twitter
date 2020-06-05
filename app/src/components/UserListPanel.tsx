@@ -6,8 +6,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { fetchUsers } from 'clients/users';
 import { UserList } from './UserList';
 
-export type UserListPanelProps = {};
-
 const useStyles = makeStyles(() => createStyles({
   root: {
     width: size.width,
@@ -15,7 +13,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-export const UserListPanel: React.FC<UserListPanelProps> = (props: UserListPanelProps) => {
+export const UserListPanel: React.FC<void> = () => {
   const classes = useStyles();
 
   const [users, setUsers] = React.useState([]);

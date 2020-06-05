@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { UserState, LoginUserState, isFollowerByUser } from 'reducers/usersReducer';
 import { UserEditButton } from 'containers/UserEditButton';
-import { blue, common } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 import { UserTabs } from './UserTabs';
 import { UserImage } from './UserImage';
 
@@ -34,13 +34,6 @@ const useStyles = makeStyles(() => createStyles({
 export const UserShow: React.FC<IProps> = (props: IProps) => {
   const { user, loginUser, clickFollow } = props;
   const classes = useStyles();
-
-  const dialogParams = {
-    title: 'Edit User',
-    label: 'Name',
-    button: 'OK',
-    default: user.name,
-  };
 
   return (
     <div>

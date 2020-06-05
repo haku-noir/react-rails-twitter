@@ -1,5 +1,4 @@
 import actionCreatorFactory from 'typescript-fsa';
-import { ErrorState } from 'reducers/errorReducer';
 
 const actionCreator = actionCreatorFactory();
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
@@ -17,7 +17,7 @@ export type ErrorAlertDispatchAsProps = {
 
 type IProps = ErrorAlertStateAsProps & ErrorAlertDispatchAsProps;
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles(() => createStyles({
   root: {
     width: size.width * 1.2,
   },

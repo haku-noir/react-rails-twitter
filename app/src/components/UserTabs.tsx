@@ -67,10 +67,6 @@ export const UserTabs = (props: IProps) => {
     setValue(newValue);
   };
 
-  const handleChangeIndex = (index: number) => {
-    setValue(index);
-  };
-
   const [users, setUsers] = React.useState([]);
   React.useEffect(() => {
     fetchUsers()

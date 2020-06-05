@@ -4,7 +4,7 @@ import {
   UserState, PassUserState, UsersState, ImageUserState, LoginUserState,
 } from 'reducers/usersReducer';
 import {
-  addUser, login, logout, updateUser, getUser, getSessionUser, fetchUsers,
+  addUser, login, logout, updateUser, getUser, getSessionUser,
 } from 'clients/users';
 
 const actionCreator = actionCreatorFactory();
