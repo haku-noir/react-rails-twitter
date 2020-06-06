@@ -6,10 +6,6 @@ export const fetchUsers = () => fetch(`${baseURL}/users`, {
   method: 'GET',
   mode: 'cors',
   credentials: 'include',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
 });
 
 export const addUser = (user: PassUserState) => fetch(`${baseURL}/users`, {
@@ -38,20 +34,12 @@ export const logout = () => fetch(`${baseURL}/logout`, {
   method: 'POST',
   mode: 'cors',
   credentials: 'include',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
 });
 
 export const getUser = (id: number) => fetch(`${baseURL}/users/${id}`, {
   method: 'GET',
   mode: 'cors',
   credentials: 'include',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
 });
 
 export const updateUser = (user: ImageUserState) => {
@@ -72,8 +60,4 @@ export const getSessionUser = () => fetch(`${baseURL}/session`, {
   method: 'GET',
   mode: 'cors',
   credentials: 'include',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
 });

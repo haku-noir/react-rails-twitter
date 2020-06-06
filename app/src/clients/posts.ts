@@ -6,10 +6,6 @@ export const fetchPosts = () => fetch(`${baseURL}/posts`, {
   method: 'GET',
   mode: 'cors',
   credentials: 'include',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
 });
 
 export const sendPost = (tweet: TweetState) => fetch(`${baseURL}/posts`, {
@@ -27,20 +23,12 @@ export const getPost = (id: number) => fetch(`${baseURL}/posts/${id}`, {
   method: 'GET',
   mode: 'cors',
   credentials: 'include',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
 });
 
 export const deletePost = (id: number) => fetch(`${baseURL}/posts/${id}`, {
   method: 'DELETE',
   mode: 'cors',
   credentials: 'include',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
 });
 
 export const updatePost = (tweet: TweetState) => fetch(`${baseURL}/posts/${tweet.id}`, {
