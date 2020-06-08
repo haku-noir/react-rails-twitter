@@ -20,7 +20,7 @@ export type UserRegisterFormStateAsProps = {
 
 export type UserRegisterFormDispatchAsProps = {
   clickL: () => void;
-  clickR: (user: string, email: string, password: string) => void;
+  clickR: (name: string, email: string, password: string) => void;
 };
 
 type IProps = UserRegisterFormStateAsProps & UserRegisterFormDispatchAsProps;
@@ -37,7 +37,7 @@ const useStyles = makeStyles(() => createStyles({
 
 export const UserRegisterForm: React.FC<IProps> = (props: IProps) => {
   const { params, clickL, clickR } = props;
-  const [user, updateUser] = React.useState('');
+  const [name, updateName] = React.useState('');
   const [email, updateEmail] = React.useState('');
   const [password, updatePassword] = React.useState('');
   const classes = useStyles();
@@ -48,9 +48,9 @@ export const UserRegisterForm: React.FC<IProps> = (props: IProps) => {
       <CardContent>
         <TextField
           className={classes.field}
-          label="User"
+          label="User Name"
           variant="outlined"
-          onChange={(event) => updateUser(String(event.target.value))}
+          onChange={(event) => updateName(String(event.target.value))}
         />
         <TextField
           className={classes.field}
@@ -72,7 +72,7 @@ export const UserRegisterForm: React.FC<IProps> = (props: IProps) => {
           {params.buttonL}
         </Button>
         <div style={{ marginLeft: 'auto' }}>
-          <Button color="primary" onClick={() => clickR(user, email, password)}>
+          <Button color="primary" onClick={() => clickR(name, email, password)}>
             {params.buttonR}
           </Button>
         </div>

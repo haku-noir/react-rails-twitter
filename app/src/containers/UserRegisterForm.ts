@@ -16,10 +16,10 @@ const mapStateToProps = (): UserRegisterFormStateAsProps => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): UserRegisterFormDispatchAsProps => ({
   clickL: () => dispatch(push('/users/login')),
-  clickR: (user: string, email: string, password: string) => {
+  clickR: (name: string, email: string, password: string) => {
     bindActionCreators(thunkToAction(usersActions.addUser.action), dispatch)({
       id: 0,
-      name: user,
+      name,
       email,
       image_name: 'default_user.jpg',
       profile: '',
